@@ -1,1 +1,1 @@
-web: bundle exec puma -C config/puma.rb
+web: mkdir /tmp/pids && bundle exec puma -C config/puma.rb
