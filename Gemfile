@@ -1,6 +1,12 @@
 source 'https://rubygems.org'
 ruby '2.6.5'
 
+# custom setup added to template
+gem 'cloudinary', '~> 1.12.0'
+gem 'activestorage'
+
+# defaults from template below
+
 gem 'bootsnap', require: false
 gem 'devise'
 gem 'jbuilder', '~> 2.0'
