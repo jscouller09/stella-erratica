@@ -7,7 +7,7 @@ class Booking < ApplicationRecord
   validates_associated :planet
   # start/end dates (add checking later)
   validates :start, presence: true
-  validate_with :end, presence: true
+  validates :end, presence: true
   # don't need to validate duration  as it can be calculated automatically
   # don't need to validate cost as it can be calculated automatically
   # completed and approved will be false by default
