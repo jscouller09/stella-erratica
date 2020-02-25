@@ -5,7 +5,7 @@ class Planet < ApplicationRecord
   validates :capacity, presence: true, numericality: { greater_than: 0 }
   belongs_to :user
   # only 1 environment per planet for now
-  # belongs_to :environment
+  belongs_to :environment
   has_many :bookings
   has_many_attached :photos
 end

@@ -8,7 +8,6 @@
 
 require 'csv'
 require 'open-uri'
-require 'faker'
 
 csv_options = { col_sep: ',', quote_char: '"', headers: :first_row,
                 converters: :numeric, header_converters: :symbol  }
