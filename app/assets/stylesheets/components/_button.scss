@@ -1,0 +1,27 @@
+.btn-rounded {
+  color: $body-color;
+  padding: 8px 24px;
+  border-radius: 10px;
+  background: $btn-color;
+  transition: background 0.3s ease;
+}
+
+.btn-rounded:hover {
+  background: $btn-color;
+  color: $header-color;
+  text-decoration: none;
+}
+
+.ghost {
+  color: $body-color;
+  padding: 8px 24px;
+  font-weight: light;
+  opacity: 0.7;
+  text-decoration: underline;
+}
+
+.ghost:hover {
+  opacity: 1;
+  text-decoration: underline;
+  color: $header-color;
+}
