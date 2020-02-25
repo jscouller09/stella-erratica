@@ -1,0 +1,76 @@
+
+.trip-notif {
+  display: flex;
+  align-items: center;
+  padding: 8px 0px;
+  margin-left:8px;
+  p {
+    margin: 0;
+    line-height: 1.4;
+    flex-grow: 1;
+    padding: 0 8px;
+    color: #696c70;
+  }
+}
+
+.trip-details {
+  overflow: hidden;
+  height: 120px;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  border-radius: 4px;
+     img {
+      height: 100%;
+      width: 120px;
+      object-fit: cover;
+      border-radius: 4px 0 0 4px;
+    }
+    h2 {
+      font-size: 16px;
+      font-weight: bold;
+      margin: 0;
+    }
+    p {
+      font-size: 12px;
+      line-height: 1.4;
+      opacity: .7;
+      margin-bottom: 0;
+      margin-top: 8px;
+    }
+}
+
+.trip-info{
+  margin-left: 16px;
+}
+
+.trip-header{
+  p{
+    margin-top: 0;
+  }
+}
+
+.trip-booking-info{
+  display: flex;
+  width: 12rem;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.trip-price{
+  p{
+    text-align: center;
+  }
+}
+.trip-footer{
+  text-align: center;
+}
+
+
+
+
+
+
+
+
