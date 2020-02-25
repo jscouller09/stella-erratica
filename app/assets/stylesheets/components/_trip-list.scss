@@ -1,9 +1,13 @@
 
+.trip-card{
+  margin-top: 24px;
+}
 .trip-notif {
   display: flex;
   align-items: center;
   padding: 8px 0px;
   margin-left:8px;
+  width: 100%
   p {
     margin: 0;
     line-height: 1.4;
@@ -21,6 +25,7 @@
   display: flex;
   align-items: center;
   border-radius: 4px;
+  width: 100%;
      img {
       height: 100%;
       width: 120px;
@@ -43,6 +48,7 @@
 
 .trip-info{
   margin-left: 16px;
+  width: 100%
 }
 
 .trip-header{
@@ -53,12 +59,13 @@
 
 .trip-booking-info{
   display: flex;
-  width: 12rem;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
 }
 
 .trip-price{
+  margin-right: 4px;
   p{
     text-align: center;
   }
