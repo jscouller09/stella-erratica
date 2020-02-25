@@ -41,8 +41,8 @@ ActiveRecord::Schema.define(version: 2020_02_25_155608) do
     t.datetime "end"
     t.integer "duration"
     t.integer "cost"
-    t.boolean "approved"
-    t.boolean "completed"
+    t.boolean "approved", default: false
+    t.boolean "completed", default: false
     t.bigint "user_id"
     t.bigint "planet_id"
     t.datetime "created_at", null: false
