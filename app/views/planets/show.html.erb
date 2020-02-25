@@ -1,0 +1,4 @@
+<h1>Show Page</h1>
+
+<%= @planet.name %>, Capacity: <%= @planet.capacity %>, Rate: $<%= @planet.rate %>/ week
+<%= link_to "Edit", edit_planet_path %> <%= link_to "Delete", planet_path, method: "DELETE" %>
