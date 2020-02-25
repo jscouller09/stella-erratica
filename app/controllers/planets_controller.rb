@@ -3,14 +3,17 @@ class PlanetsController < ApplicationController
 
   # GET /planets
   def index
+    @planets = Planet.all
   end
 
   # GET /planets/:id
   def show
+    @planet = Planet.find(params[:id])
   end
 
   # GET /planets/new
   def new
+    @planet = Planet.new(planet_params)
   end
 
   # POST /planets
@@ -27,5 +30,11 @@ class PlanetsController < ApplicationController
 
   # DELETE /planets/:id
   def destroy
+  end
+
+private
+
+  def planet_params
+    params.require(:planet).permit(:name, :description, :rate, :capacity, :photos)
   end
 end
