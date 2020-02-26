@@ -1,5 +1,36 @@
 <h1>Show Page</h1>
 
-<%= @planet.name %>, Capacity: <%= @planet.capacity %>, Rate: $<%= @planet.rate %>/ week
-<%= link_to "Edit", edit_planet_path %> <%= link_to "Delete", planet_path, method: "DELETE", data: { confirm: "Are You Sure You Want to Destroy #{@planet.name}?"} %>
-<%= link_to "Book!", new_planet_booking_path(@planet) %>
+<ul>
+  <li>
+    <%= @planet.name %>
+  </li>
+  <li>
+    Capacity: <%= @planet.capacity %>
+  </li>
+  <li>
+    Rate: <%= @planet.rate %>
+  </li>
+  <li>
+    Environment: <%= @planet.environment.name %>
+    <i class="<%= @planet.environment.icon %>"></i>
+  </li>
+  <% @planet.photos.each do |photo| %>
+    <li>
+      <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
+    </li>
+  <% end %>
+</ul>
+
+<% if policy(Booking).create? %>
+  <%= link_to "Book!", new_planet_booking_path(@planet) %>
+<% end %>
+
+<% if policy(@planet).update? %>
+  <%= link_to "Edit", edit_planet_path %>
+<% end %>
+
+<% if policy(@planet).destroy? %>
+  <%= link_to "Delete", planet_path,
+      method: "DELETE",
+      data: { confirm: "Are You Sure You Want to Destroy #{@planet.name}?"} %>
+<% end %>

@@ -1,5 +1,5 @@
-email,first_name,last_name,nickname,traveller,overlord,password
-jabba@starwars.com,Jabba,the Hutt,JB,0,1,123456
-voldemort@harry-potter.com,Lord,Voldemort,He who should not be named,0,1,123456
-zorgan@zathura.com,Zorgon,,Z,0,1,123456
-neil.armstrong@nasa.com,Neil,Armstrong,Neil,1,0,123456
+email,first_name,last_name,nickname,traveller,overlord,password,photo_url
+jabba@starwars.com,Jabba,the Hutt,JB,0,1,123456,https://upload.wikimedia.org/wikipedia/en/5/53/Jabba_the_Hutt_in_Return_of_the_Jedi_%281983%29.png
+voldemort@harry-potter.com,Lord,Voldemort,He who should not be named,0,1,123456,
+zorgan@zathura.com,Zorgon,Grog,ZG,0,1,123456,
+neil.armstrong@nasa.com,Neil,Armstrong,Neil,1,0,123456,

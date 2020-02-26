@@ -1,8 +1,17 @@
 
 <h1>Index</h1>
-<ul><% @planets.each do |planet| %></ul>
-  <li><%= link_to planet.name, planet_path(planet) %> - Capacity: <%= planet.capacity %>, Rate: $<%= planet.rate %>/ week</li>
+<ul>
+  <% @planets.each do |planet| %>
+    <li><%= cl_image_tag planet.photos.first.key, height: 300, width: 400, crop: :fill %>
+        <%= link_to planet.name, planet_path(planet) %>
+        Capacity: <%= planet.capacity %>
+        Rate: <%= planet.rate %>
+        Environment: <%= planet.environment.name %>
+        <i class="<%= planet.environment.icon %>"></i>
+    </li>
+  <% end %>
+</ul>
+
+<% if policy(Planet).create? %>
+  <%= link_to "Create New Planet", new_planet_path %>
 <% end %>
-
-<%= link_to "Create New Planet", new_planet_path %>
-
