@@ -21,14 +21,21 @@ class BookingsController < ApplicationController
 
   # GET /bookings/:id/edit
   def edit
+    @booking = Booking.find(params[:id])
   end
 
   # PATCH or PUT /bookings/:id
   def update
+    @booking = Booking.find(params[:id])
+    @booking.update(booking_params)
+    redirect_to dashboard_path
   end
 
   # DELETE /bookings/:id
   def destroy
+    @booking = Booking.find(params[:id])
+    @booking.destroy
+    redirect_to dashboard_path
   end
 
   private
