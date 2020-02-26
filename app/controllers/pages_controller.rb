@@ -7,6 +7,9 @@ class PagesController < ApplicationController
 
   # GET /dashboard
   def dashboard
-    # TO DO: Add dashboards for overlords and ITs
+    @planets = policy_scope(Planet)
+    @bookings = policy_scope(Booking)
+    authorize @planets
+    authorize @bookings
   end
 end

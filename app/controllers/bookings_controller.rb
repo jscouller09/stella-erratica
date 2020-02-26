@@ -13,6 +13,8 @@ class BookingsController < ApplicationController
     @booking.user = current_user
     @booking.planet = @planet
     authorize @booking
+    @booking.duration = @booking.end - @booking.start
+    @booking.cost = @planet.rate * @booking.duration
     if @booking.save
     # TODO make this redirect to the user dashboard
       redirect_to planet_path(@planet)
