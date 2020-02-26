@@ -4,12 +4,14 @@
   border-radius: 10px;
   background: $btn-color;
   transition: background 0.3s ease;
+  text-align: center
 }
 
 .btn-rounded:hover {
   background: $btn-color;
   color: $header-color;
   text-decoration: none;
+  text-align: center
 }
 
 .ghost {
@@ -18,10 +20,12 @@
   font-weight: light;
   opacity: 0.7;
   text-decoration: underline;
+  text-align: center
 }
 
 .ghost:hover {
   opacity: 1;
   text-decoration: underline;
   color: $header-color;
+  text-align: center
 }
