@@ -3,6 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+  has_one_attached :avatar
   # user must have a unique email (validated by devise)
   # user must have a first name and last name
   validates :email, presence: :true, uniqueness: :true
