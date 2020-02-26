@@ -59,7 +59,7 @@ CSV.read(filepath, csv_options).each do |row|
   end
   # assign the planet a random overlord
   planet.user = User.where(overlord: true).sample
-  unless planet.save
+  unless planet.save!
     puts "Couldn't create planet #{planet.name}. Maybe already in DB?"
   else
     puts "Made planet #{planet.name}!"
