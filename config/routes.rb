@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
-  root to: 'planets#index' # change to planets#index later
+  root to: 'pages#home' # change to planets#index later
 
   # dashboard route
   get '/dashboard', to: 'pages#dashboard'
