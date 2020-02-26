@@ -4,6 +4,7 @@ ruby '2.6.5'
 # custom setup added to template
 gem 'cloudinary', '~> 1.12.0'
 gem 'activestorage'
+gem 'faker'
 
 # defaults from template below
 

@@ -1,2 +1,8 @@
-<h1>Coming Soon!</h1>
+
+<h1>Index</h1>
+<ul><% @planets.each do |planet| %></ul>
+  <li><%= link_to planet.name, planet_path(planet) %> - Capacity: <%= planet.capacity %>, Rate: $<%= planet.rate %>/ week</li>
+<% end %>
+
+<%= link_to "Create New Planet", new_planet_path %>
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_25_155608) do
+ActiveRecord::Schema.define(version: 2020_02_25_233203) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,7 +60,7 @@ ActiveRecord::Schema.define(version: 2020_02_25_155608) do
 
   create_table "planets", force: :cascade do |t|
     t.string "name"
-    t.string "description"
+    t.text "description"
     t.integer "rate"
     t.integer "capacity"
     t.float "latitude"
