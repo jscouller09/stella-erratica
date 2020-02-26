@@ -5,6 +5,7 @@ ruby '2.6.5'
 gem 'cloudinary', '~> 1.12.0'
 gem 'activestorage'
 gem 'faker'
+gem 'pundit'
 
 # defaults from template below
 

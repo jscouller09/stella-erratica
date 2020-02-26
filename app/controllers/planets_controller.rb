@@ -3,23 +3,26 @@ class PlanetsController < ApplicationController
 
   # GET /planets
   def index
-    @planets = Planet.all
+    @planets = policy_scope(Planet)
   end
 
   # GET /planets/:id
   def show
     @planet = Planet.find(params[:id])
+    authorize @planet
   end
 
   # GET /planets/new
   def new
     @planet = Planet.new
+    authorize @planet
   end
 
   # POST /planets
   def create
     @planet = Planet.new(planet_params)
     @planet.user = current_user
+    authorize @planet
     if @planet.save!
       redirect_to planet_path(@planet.id)
     else
@@ -29,13 +32,14 @@ class PlanetsController < ApplicationController
 
   # GET /planets/:id/edit
   def edit
-  # TODO only owners can edit their own planets
     @planet = Planet.find(params[:id])
+    authorize @planet
   end
 
   # PATCH or PUT /planets/:id
   def update
     @planet = Planet.find(params[:id])
+    authorize @planet
     @planet.update(planet_params)
     redirect_to planets_path
   end
@@ -44,6 +48,7 @@ class PlanetsController < ApplicationController
   def destroy
   # TODO only owners can destroy their own planets
     @planet = Planet.find(params[:id])
+    authorize @planet
     @planet.destroy
     redirect_to planets_path
   end
