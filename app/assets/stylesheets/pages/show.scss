@@ -1,0 +1,58 @@
+.show-info {
+  display: flex;
+  justify-content: space-between;
+  box-shadow: 0 0 15px $white;
+  opacity: O.2;
+  p {
+    font-size: medium;
+  }
+}
+
+.show-info-price {
+  display: flex;
+  flex-direction: column;
+}
+ .show-info-price h2 {
+  color: $header-color;
+  font-size: 2rem;
+  font-weight: bold;
+ }
+
+ .show-info-price p {
+  color: $body-color;
+  font-size: 0.79rem;
+  opacity: .8;
+  margin: 0;
+}
+
+.showa {
+  color: $body-color;
+  text-decoration: none;
+}
+
+.show-info-text {
+  text-align: justify;
+}
+
+.show-info-capacity {
+  display: flex;
+  justify-content: space-between;
+  width: 4rem;
+  margin-top: 1rem;
+}
+
+.localisation img {
+  width: 100%;
+  margin-bottom: 3rem;
+}
+
+.foot {
+  width: 100%;
+  display: flex;
+  padding: 1.5rem 0;
+  justify-content: center;
+  background-color: $white;
+  border-top: 1px solid $light-gray;
+  position: sticky;
+}
+
