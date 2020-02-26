@@ -1,3 +1,16 @@
+a{
+  text-decoration: none;
+  color: $body-color;
+  &:hover{
+  text-decoration: none;
+  color: $body-color;
+  }
+}
+
+.planet-grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
 
 .card-planet {
   overflow: hidden;
@@ -8,29 +21,17 @@
   max-width: 10rem;
   margin: 1.2rem;
 }
-
 .card-planet img {
   height: 8.5rem;
   width: 100%;
   object-fit: cover;
 }
-
-.card-planet-infos-text h2 {
-  color: $header-color;
-  font-size: 74%;
-  font-weight: bold;
-  margin-bottom: 0;
-  margin-top: 0.4rem;
-}
-
 .card-planet p {
   color: $body-color;
   font-size: 49%;
   opacity: .7;
   margin: 0;
 }
-
-
 .card-planet .card-planet-infos {
   display: flex;
   align-items: flex-end;
@@ -45,24 +46,32 @@
   height: 100%;
   margin-bottom: 0.2rem;
   margin-left: 0.3rem;
-
+  a{
+    text-decoration:none;
+    color: $header-color;
+  }
 }
-
 .card-planet-infos-text p {
-  margin-bottom: 0.2rem;
-  margin-top: 0.25rem;
+  margin-bottom: 0;
+  margin-top: 0;
+  font-size: 0.4rem;
+}
+.card-planet-infos-text h2 {
+  color: $header-color;
+  font-size: 100%;
+  font-weight: bold;
+  margin-bottom: 0;
+  margin-top: 0.4rem;
 }
 
 .card-planet-infos-icons {
   display: flex;
   font-size: 0.6rem;
-  width: 4rem;
+  width: 100%;
   justify-content: space-around;
   opacity: 0.25;
   align-items: center;
-
 }
-
 .card-planet-infos-price {
   display: flex;
   flex-direction: column;
@@ -71,11 +80,10 @@
   margin-bottom: 0.7rem;
   margin-right: 0.3rem;
   font-weight: lighter;
+  font-size:24px;
 }
-
-
 .card-planet-infos-price .card-planet-pricing {
-  font-size: 1rem;
+  font-size:24px;
   margin-bottom: 1.4rem;
   margin-left: 0.2rem;
   font-weight: 200;

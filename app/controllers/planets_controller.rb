@@ -3,7 +3,7 @@ class PlanetsController < ApplicationController
 
   # GET /planets
   def index
-    @planets = policy_scope(Planet)
+    @planets = Planet.all
   end
 
   # GET /planets/:id
@@ -23,8 +23,8 @@ class PlanetsController < ApplicationController
     @planet = Planet.new(planet_params)
     @planet.user = current_user
     authorize @planet
-    if @planet.save!
-      redirect_to planet_path(@planet.id)
+    if @planet.save
+      redirect_to planet_path(@planet)
     else
       render "new"
     end
@@ -40,8 +40,11 @@ class PlanetsController < ApplicationController
   def update
     @planet = Planet.find(params[:id])
     authorize @planet
-    @planet.update(planet_params)
-    redirect_to planets_path
+    if @planet.update(planet_params)
+      redirect_to planet_path(@planet)
+    else
+      render "edit"
+    end
   end
 
   # DELETE /planets/:id
@@ -56,6 +59,6 @@ class PlanetsController < ApplicationController
 private
 
   def planet_params
-    params.require(:planet).permit(:name, :description, :rate, :capacity, :photos)
+    params.require(:planet).permit(:name, :description, :rate, :capacity, :environment_id, photos: [])
   end
 end

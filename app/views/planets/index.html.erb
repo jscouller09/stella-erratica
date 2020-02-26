@@ -1,17 +1,47 @@
+<div class="container mt-5">
 
-<h1>Index</h1>
-<ul>
-  <% @planets.each do |planet| %>
-    <li><%= cl_image_tag planet.photos.first.key, height: 300, width: 400, crop: :fill %>
-        <%= link_to planet.name, planet_path(planet) %>
-        Capacity: <%= planet.capacity %>
-        Rate: <%= planet.rate %>
-        Environment: <%= planet.environment.name %>
-        <i class="<%= planet.environment.icon %>"></i>
-    </li>
-  <% end %>
-</ul>
-
+<h1>Explore the universe...</h1>
 <% if policy(Planet).create? %>
-  <%= link_to "Create New Planet", new_planet_path %>
+  <%= link_to new_planet_path, class:"add-btn" do %>
+    <i class="fas fa-plus"></i> Create a new planet
+  <% end %>
 <% end %>
+
+
+<div class="planet-grid">
+<% @planets.each do |planet| %>
+  <%= link_to planet_path(planet) do %>
+  <div class="card-planet">
+    <%= cl_image_tag planet.photos.first.key, height: 300, width: 400, crop: :fill %>
+
+    <div class="card-planet-infos">
+      <div class="card-planet-infos-text">
+        <h2> <%= planet.name %></h2>
+        <p><%= planet.longitude %> <%= planet.latitude %></p>
+        <div class="card-planet-infos-icons">
+          <i class="fab fa-reddit-alien"></i><span><%= planet.capacity %></span>
+          <i class="<%= planet.environment.icon %>"></i>
+        </div>
+        </div>
+
+        <div class="card-planet-infos-price">
+          <p>Rate:</p>
+          <div class="card-planet-pricing">
+            <p><%= planet.rate %></p>
+          </div>
+        </div>
+
+    </div>
+
+  </div>
+  <% end %>
+
+  <% end %>
+</div>
+</div>
+
+
+
+
+
+
