@@ -1,1 +1,26 @@
 <h2>This is the DASHBOARD!</h2>
+<ul>
+  <% @planets.each do |planet| %>
+    <li><%= cl_image_tag planet.photos.first.key, height: 300, width: 400, crop: :fill %>
+        <%= link_to planet.name, planet_path(planet) %>
+        Capacity: <%= planet.capacity %>
+        Rate: <%= planet.rate %>
+        Environment: <%= planet.environment.name %>
+        <i class="<%= planet.environment.icon %>"></i>
+    </li>
+  <% end %>
+</ul>
+
+
+<ul>
+  <% @bookings.each do |booking| %>
+    <li>
+        <%= booking.start %>,
+        <%= booking.end %>,
+        <%= booking.duration %>,
+        <%= booking.cost %>,
+        <%= booking.approved? %>,
+        <%= booking.completed? %>,
+    </li>
+  <% end %>
+</ul>

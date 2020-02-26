@@ -1,11 +1,13 @@
 <% env_lab = lambda { |env| "<i class=\"#{env.icon}\"></i> | #{env.name}".html_safe } %>
 
+<div class="stella-form">
 <%= simple_form_for @planet do |f| %>
   <%= f.input :name %>
   <%= f.input :description %>
-  <%= f.input :rate %>
+  <%= f.input :rate%>
   <%= f.input :capacity %>
   <%= f.association :environment, as: :radio_buttons, label_method: env_lab %>
   <%= f.input :photos, as: :file, input_html: { multiple: true } %>
-  <%= f.button :submit %>
+  <%= f.button :submit, class:"btn-rounded" %>
 <% end %>
+</div>

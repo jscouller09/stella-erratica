@@ -1,36 +1,81 @@
-<h1>Show Page</h1>
 
-<ul>
-  <li>
-    <%= @planet.name %>
-  </li>
-  <li>
-    Capacity: <%= @planet.capacity %>
-  </li>
-  <li>
-    Rate: <%= @planet.rate %>
-  </li>
-  <li>
-    Environment: <%= @planet.environment.name %>
-    <i class="<%= @planet.environment.icon %>"></i>
-  </li>
-  <% @planet.photos.each do |photo| %>
-    <li>
-      <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
-    </li>
-  <% end %>
-</ul>
+<div class="container mt-5">
 
-<% if policy(Booking).create? %>
-  <%= link_to "Book!", new_planet_booking_path(@planet) %>
-<% end %>
+  <div id="carouselExampleControls" class="carousel slide mt-5" data-ride="carousel">
+    <div class="carousel-inner">
 
-<% if policy(@planet).update? %>
-  <%= link_to "Edit", edit_planet_path %>
-<% end %>
+      <% @planet.photos.each_with_index do |photo, index| %>
+        <% if index == 0 %>
+          <div class="carousel-item active">
+            <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
+          </div>
+        <% else %>
+          <div class="carousel-item">
+            <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
 
-<% if policy(@planet).destroy? %>
-  <%= link_to "Delete", planet_path,
-      method: "DELETE",
-      data: { confirm: "Are You Sure You Want to Destroy #{@planet.name}?"} %>
-<% end %>
+    <%= link_to "< back", dashboard_path, class: "showa" %>
+
+
+
+  <div class="show-info">
+    <div class="show-info-price">
+      <h2><%= @planet.name %></h2>
+      <h6> Overlord : <%= @planet.user.first_name + ' ' + @planet.user.last_name %></h6>
+      <p>Lat : <%= @planet.latitude %> Long : <%= @planet.longitude %></p>
+      <div class="show-info-capacity">
+        <i class="fab fa-reddit-alien"></i><span><%= @planet.capacity %></span>
+      </div>
+    </div>
+      <p><%= @planet.rate %> $ / week</p>
+  </div>
+
+  <div class="show-info-text">
+    <p><%= @planet.description %></p>
+
+  </div>
+
+  <h2>Environments</h2>
+  <br>
+  <div class="env-infos">
+    <i class="<%=@planet.environment.icon%>"></i><span><%= @planet.environment.description %></span>
+  </div>
+
+  <div class="localisation">
+    <br>
+    <h2>Location</h2>
+    <img src="https://cimtchau.ca/app/uploads/ciel.jpg" alt="Solar system">
+  </div>
+</div>
+      <% if policy(Booking).create? %>
+        <div class="foot fixed-bottom">
+        <%= link_to "Book!", new_planet_booking_path(@planet), class: "btn-rounded" %>
+        </div>
+      <% end %>
+
+    </div>
+
+  <% if policy(@planet).update? %>
+      <div class="foot fixed-bottom">
+          <%= link_to "Edit", edit_planet_path, class: "btn-rounded" %>
+
+        <% end %>
+
+        <% if policy(@planet).destroy? %>
+          <%= link_to "Delete", planet_path,
+              method: "DELETE",
+              data: { confirm: "Are You Sure You Want to Destroy #{@planet.name}?"}, class: "btn-rounded" %>
+        <% end %>
+      </div>

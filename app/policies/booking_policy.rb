@@ -17,10 +17,18 @@ class BookingPolicy < ApplicationPolicy
     record.user == user || record.planet.user
   end
 
+  def dashboard?
+    true
+  end
+
   class Scope < Scope
     def resolve
-      # there is no booking index for now, so ok
-      scope.all
+      # set so overlords and travellers can only see their own bookings
+      if user.overlord?
+        user.incoming_bookings
+      elsif user.traveller?
+        scope.where(user: user)
+      end
     end
   end
 end
