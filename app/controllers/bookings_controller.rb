@@ -3,17 +3,19 @@ class BookingsController < ApplicationController
   def new
     @planet = Planet.find(params[:planet_id])
     @booking = Booking.new
+    authorize @booking
   end
 
   # POST /planets/:planet_id/bookings
   def create
-  # planet_id should be coming from the form linked through the show page
+    @planet = Planet.find(params[:planet_id])
     @booking = Booking.new(booking_params)
-    @user = current_user.id
-    @booking.user = @user
+    @booking.user = current_user
+    @booking.planet = @planet
+    authorize @booking
     if @booking.save
-  # TODO make this redirect to the user dashboard
-      redirect_to planets_path
+    # TODO make this redirect to the user dashboard
+      redirect_to planet_path(@planet)
     else
       render "new"
     end
@@ -22,11 +24,13 @@ class BookingsController < ApplicationController
   # GET /bookings/:id/edit
   def edit
     @booking = Booking.find(params[:id])
+    authorize @booking
   end
 
   # PATCH or PUT /bookings/:id
   def update
     @booking = Booking.find(params[:id])
+    authorize @booking
     @booking.update(booking_params)
     redirect_to dashboard_path
   end
@@ -34,6 +38,7 @@ class BookingsController < ApplicationController
   # DELETE /bookings/:id
   def destroy
     @booking = Booking.find(params[:id])
+    authorize @booking
     @booking.destroy
     redirect_to dashboard_path
   end
