@@ -3,7 +3,7 @@ class PlanetsController < ApplicationController
 
   # GET /planets
   def index
-    @planets = policy_scope(Planet)
+    @planets = Planet.all
   end
 
   # GET /planets/:id

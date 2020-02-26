@@ -27,12 +27,20 @@ class PlanetPolicy < ApplicationPolicy
     record.user == user
   end
 
-
+  def dashboard?
+    true
+  end
 
   class Scope < Scope
     def resolve
-      # for now all planets are visible to all users
-      scope.all
+      # this scope is only called in the dashboard for now
+      # set so overlord can only see their own planets
+      # but travellers can see all the planets
+      if user.overlord?
+        scope.where(user: user)
+      else
+        scope.all
+      end
     end
   end
 end
