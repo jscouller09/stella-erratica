@@ -3,7 +3,7 @@ class PlanetsController < ApplicationController
 
   # GET /planets
   def index
-    if params[:query]
+    if params[:query] && !params[:query].empty?
       @planets = policy_scope(Planet).global_search(params[:query])
     else
       @planets = policy_scope(Planet)

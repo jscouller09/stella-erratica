@@ -12,7 +12,7 @@ class Planet < ApplicationRecord
   has_many_attached :photos
   # pg_search *should* allow for searching by environment and/or description
   pg_search_scope :global_search,
-    against: [ :description],
+    against: [ :description, :name, ],
     associated_against: {
       environments: :name,
       user: [ :nickname, :first_name, :last_name ]
