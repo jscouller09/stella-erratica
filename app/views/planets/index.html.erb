@@ -18,10 +18,10 @@
 <div class="planet-grid">
 <% @planets.each do |planet| %>
   <%= link_to planet_path(planet) do %>
-  <div class="card-planet">
+  <div class="my-planet-card">
     <%= cl_image_tag planet.photos.first.key, height: 300, width: 400, crop: :fill %>
 
-    <div class="card-planet-infos">
+    <div class="my-planet-infos">
       <div class="card-planet-infos-text">
         <h2> <%= planet.name %></h2>
         <p><%= planet.longitude %> <%= planet.latitude %></p>

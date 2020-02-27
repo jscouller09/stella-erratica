@@ -43,4 +43,5 @@ class BookingPolicy < ApplicationPolicy
       scope.all
     end
   end
+
 end

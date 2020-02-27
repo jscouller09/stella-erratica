@@ -37,3 +37,31 @@
   opacity: 1;
   }
 }
+
+.btn-approve {
+  color: $green;
+  opacity: 0.6;
+  text-align: center;
+  padding: 8px 24px;
+}
+
+.btn-approve:hover {
+  opacity: 1;
+  color: $green;
+  text-align: center;
+  font-weight: bolder;
+}
+.btn-reject {
+  color: $red;
+  opacity: 0.6;
+  text-align: center;
+  padding: 8px 24px;
+}
+
+.btn-reject:hover {
+  opacity: 1;
+  color: $red;
+  text-align: center;
+  font-weight: bolder;
+}
+
