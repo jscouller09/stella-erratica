@@ -2,6 +2,7 @@ class Booking < ApplicationRecord
   # a booking has one user and one planet
   belongs_to :user
   belongs_to :planet
+  has_one :review
   # can't create a booking without user/planet instance
   validates_associated :user
   validates_associated :planet
