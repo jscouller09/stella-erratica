@@ -19,12 +19,12 @@ class PlanetPolicy < ApplicationPolicy
   # by default #edit will copy update
   def update?
     # overlords can only update their own planets
-    record.user == user || user.admin?
+    user && ((record.user == user) || user.admin?)
   end
 
   def destroy?
     # overlords can only destroy their own planets
-    record.user == user || user.admin?
+    user && ((record.user == user) || user.admin?)
   end
 
   class Scope < Scope

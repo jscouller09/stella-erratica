@@ -57,7 +57,7 @@ class BookingsController < ApplicationController
     @booking = Booking.find(params[:id])
     authorize @booking
     @booking.approved = false
-    @booking.complete = true
+    @booking.completed = true
     @booking.save
     redirect_to dashboard_path
   end
