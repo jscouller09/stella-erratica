@@ -1,11 +1,6 @@
 <div class="container mt-5">
 
 <h1>Explore the universe...</h1>
-<% if policy(Planet).create? %>
-  <%= link_to new_planet_path, class:"add-btn" do %>
-    <i class="fas fa-plus"></i> Create a new planet
-  <% end %>
-<% end %>
 
 <%= form_tag planets_path, method: :get do %>
   <%= text_field_tag :query,
@@ -16,8 +11,7 @@
   <!-- TODO change this button to something better -->
   <%= submit_tag "Explore", class: "btn btn-primary" %>
 <% end %>
-
-
+  
 <div class="planet-grid">
 <% @planets.each do |planet| %>
   <%= link_to planet_path(planet) do %>

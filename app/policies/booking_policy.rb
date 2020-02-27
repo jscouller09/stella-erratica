@@ -3,7 +3,7 @@ class BookingPolicy < ApplicationPolicy
   # by default #new will copy create
   def create?
     # only travellers can create bookings
-    user.traveller?
+    user && user.traveller?
   end
 
   # by default #edit will copy update
@@ -24,11 +24,7 @@ class BookingPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
       # set so overlords and travellers can only see their own bookings
-      if user.overlord?
-        user.incoming_bookings
-      elsif user.traveller?
-        scope.where(user: user)
-      end
+      scope.all
     end
   end
 end
