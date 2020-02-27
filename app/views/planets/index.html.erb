@@ -6,8 +6,13 @@
   <%= text_field_tag :query,
     params[:query],
     class: "form-control",
-    placeholder: "Exploration Keyword"
+    placeholder: "Exploration Keyword",
+    autocomplete: "off"
   %>
+<% end %>
+
+<% if @planets.empty? %>
+  <h4 class="mt-5">Sorry, the Universe is not quite that big.... yet ;-)</h4>
 <% end %>
 
 <div class="planet-grid">
