@@ -25,8 +25,8 @@
       <span class="sr-only">Next</span>
     </a>
   </div>
-
-    <%= link_to "< back", dashboard_path, class: "showa" %>
+    <!-- TODO style this button -->
+    <%= link_to "< back", planets_path, class: "showa" %>
 
 
 
@@ -50,7 +50,13 @@
   <h2>Environments</h2>
   <br>
   <div class="env-infos">
-    <i class="<%=@planet.environment.icon%>"></i><span><%= @planet.environment.description %></span>
+    <% @planet.environments.each do |env| %>
+      <span>
+        <i class="<%= env.icon %>"></i>&nbsp;
+        <%= env.description %>
+      </span>
+      <br>
+    <% end %>
   </div>
 
   <div class="localisation">
