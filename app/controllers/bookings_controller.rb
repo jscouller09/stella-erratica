@@ -17,6 +17,7 @@ class BookingsController < ApplicationController
     @booking.cost = @planet.rate * @booking.duration
     if @booking.save
     # TODO make this redirect to the user dashboard
+      flash[:alert] = "Your Request Has Been Sent to the Overlord. Awaiting approval."
       redirect_to planet_path(@planet)
     else
       render "new"
