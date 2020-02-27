@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_27_175430) do
+ActiveRecord::Schema.define(version: 2020_02_27_194134) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,6 +59,11 @@ ActiveRecord::Schema.define(version: 2020_02_27_175430) do
     t.string "icon"
   end
 
+  create_table "environments_planets", id: false, force: :cascade do |t|
+    t.bigint "planet_id", null: false
+    t.bigint "environment_id", null: false
+  end
+
   create_table "planets", force: :cascade do |t|
     t.string "name"
     t.text "description"
@@ -67,10 +72,8 @@ ActiveRecord::Schema.define(version: 2020_02_27_175430) do
     t.float "latitude"
     t.float "longitude"
     t.bigint "user_id"
-    t.bigint "environment_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["environment_id"], name: "index_planets_on_environment_id"
     t.index ["user_id"], name: "index_planets_on_user_id"
   end
 
@@ -95,6 +98,5 @@ ActiveRecord::Schema.define(version: 2020_02_27_175430) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "bookings", "planets"
   add_foreign_key "bookings", "users"
-  add_foreign_key "planets", "environments"
   add_foreign_key "planets", "users"
 end

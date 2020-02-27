@@ -13,7 +13,9 @@
               <p><%= planet.longitude %> <%= planet.latitude %></p>
               <div class="card-planet-infos-icons">
                 <i class="fab fa-reddit-alien"></i><span><%= planet.capacity %></span>
-                <i class="<%= planet.environment.icon %>"></i>
+                <% planet.environments.each do |env| %>
+                  <i class="<%= env.icon %>"></i>
+                <% end %>
               </div>
             </div>
             <div class="card-planet-infos-price">
@@ -50,7 +52,9 @@
               <div class="trip-booking-info">
                 <div class="trip-icons">
                   <i class="fab fa-reddit-alien"></i> <span> <%= booking.planet.capacity %></span>
-                  <i class="<%= booking.planet.environment.icon %>"></i>
+                  <% planet.environments.each do |env| %>
+                    <i class="<%= env.icon %>"></i>
+                  <% end %>
                 </div>
                 <div class="trip-price">
                   <p>Total</p>
@@ -81,7 +85,9 @@
               <p><%= planet.longitude %> <%= planet.latitude %></p>
               <div class="my-planet-icons">
                 <p><i class="fab fa-reddit-alien"></i><%= planet.capacity %></p>
-                <p><i class="<%= planet.environment.icon %>"></i></p>
+                <% planet.environments.each do |env| %>
+                  <p><i class="<%= env.icon %>"></i></p>
+                <% end %>
               </div>
             </div>
             <span><p>Rate:</p><h2 class="my-planet-pricing"> <%= planet.rate %></h2></span>

@@ -11,7 +11,7 @@
   <!-- TODO change this button to something better -->
   <%= submit_tag "Explore", class: "btn btn-primary" %>
 <% end %>
-  
+
 <div class="planet-grid">
 <% @planets.each do |planet| %>
   <%= link_to planet_path(planet) do %>
@@ -24,7 +24,9 @@
         <p><%= planet.longitude %> <%= planet.latitude %></p>
         <div class="card-planet-infos-icons">
           <i class="fab fa-reddit-alien"></i><span><%= planet.capacity %></span>
-          <i class="<%= planet.environment.icon %>"></i>
+          <% planet.environments.each do |env| %>
+            <i class="<%= env.icon %>"></i>
+          <% end %>
         </div>
         </div>
 
