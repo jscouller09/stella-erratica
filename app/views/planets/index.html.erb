@@ -2,6 +2,16 @@
 
 <h1>Explore the universe...</h1>
 
+<%= form_tag planets_path, method: :get do %>
+  <%= text_field_tag :query,
+    params[:query],
+    class: "form-control",
+    placeholder: "Exploration Keyword"
+  %>
+  <!-- TODO change this button to something better -->
+  <%= submit_tag "Explore", class: "btn btn-primary" %>
+<% end %>
+  
 <div class="planet-grid">
 <% @planets.each do |planet| %>
   <%= link_to planet_path(planet) do %>

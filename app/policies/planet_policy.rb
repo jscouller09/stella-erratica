@@ -13,23 +13,19 @@ class PlanetPolicy < ApplicationPolicy
   # by default #new will copy create
   def create?
     # only overlords can create planets
-    user && user.overlord?
+    user && (user.overlord? || user.admin?)
   end
 
   # by default #edit will copy update
   def update?
     # overlords can only update their own planets
-    record.user == user
+    record.user == user || user.admin?
   end
 
   def destroy?
     # overlords can only destroy their own planets
-    record.user == user
+    record.user == user || user.admin?
   end
-
-  # def dashboard?
-  #   true
-  # end
 
   class Scope < Scope
     def resolve

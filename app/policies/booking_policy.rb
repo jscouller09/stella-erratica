@@ -3,7 +3,7 @@ class BookingPolicy < ApplicationPolicy
   # by default #new will copy create
   def create?
     # only travellers can create bookings
-    user && user.traveller?
+    user && (user.traveller? || user.admin?)
   end
 
   # by default #edit will copy update
@@ -25,6 +25,10 @@ class BookingPolicy < ApplicationPolicy
   def reject_booking?
     #only overlords  can approve booking
     record.user == record.planet.user
+
+  def destroy?
+    # travellers and overlords can only destroy their own bookings
+    record.user == user || record.planet.user || user.admin?
   end
 
   def complete_booking?
