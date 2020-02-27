@@ -1,6 +1,37 @@
-<%= simple_form_for [@planet, @booking] do |f| %>
-  <%= f.input :start %>
-  <%= f.input :end %>
-  <%= f.submit "Book this Planet!" %>
-<% end %>
 
+  <div class="container">
+    <h1><%= @planet.name %></h1>
+    <h3> <%= @planet.rate %> <i class="fab fa-gitkraken"></i> / Space day</h3>
+
+    <div class="row justify-content-center stella-form">
+        <div class="form-container">
+          <div class="header">
+            <div class="header-row">
+              <div class="header-form">
+                <div class="big-bold" id="price" data-amount-cents="<%= @planet.rate * 100 %>"><%= @planet.rate %><i class="fab fa-gitkraken"></i></div>
+                <div class="small-light"> / Space days</div>
+              </div>
+            </div>
+          </div>
+          <div class="flex-between">
+            <p>Space Days:</p>
+            <div class="actions">
+              <input type="number" id="counter" class="field" data-count="1">
+            </div>
+          </div>
+          <form>
+            <div class="total-resume">
+              <div class="total-row">
+                <p>Service Fee</p><span>1000  <i class="fab fa-gitkraken"></i></span>
+              </div>
+              <div class="total-row">
+                <p>Total:</p><span class="total">0  <i class="fab fa-gitkraken"></i></span>
+              </div>
+            </div>
+
+            <input type="number" value="<%= @planet.rate %>" disabled class="form-control" id="price-input" name="price-cents" style="visibility: hidden;">
+            <input type="submit" value='BOOK ME!' class="btn-rounded" id="submit">
+          </form>
+        </div>
+    </div>
+  </div>
