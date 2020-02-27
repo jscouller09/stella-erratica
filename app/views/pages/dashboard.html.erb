@@ -23,7 +23,9 @@
              <div class="trip-booking-info">
                <div class="trip-icons">
                  <i class="fab fa-reddit-alien"></i> <span> <%= booking.planet.capacity %></span>
-                 <i class="<%= booking.planet.environment.icon %>"></i>
+                 <% booking.planet.environments.each do |env| %>
+                   <i class="<%= env.icon %>"></i>
+                 <% end %>
                </div>
                <div class="trip-price">
                  <p>Total</p>
@@ -86,7 +88,7 @@
              <p><%= booking.user.first_name %> sent you a request</p>
           </div>
           <div class="trip-details">
-            
+
               <%= cl_image_tag booking.planet.photos.first.key %>
             <div class="trip-info">
               <div class="trip-header">
@@ -96,7 +98,7 @@
               <div class="trip-booking-info">
                 <div class="trip-icons">
                   <i class="fab fa-reddit-alien"></i> <span> <%= booking.planet.capacity %></span>
-                  <% planet.environments.each do |env| %>
+                  <% booking.planet.environments.each do |env| %>
                     <i class="<%= env.icon %>"></i>
                   <% end %>
                 </div>
@@ -114,7 +116,7 @@
             <div class="trip-booking-info">
                  <div class="trip-icons">
                    <i class="fab fa-reddit-alien"></i> <span> <%= booking.planet.capacity %></span>
-                   <% planet.environments.each do |env| %>
+                   <% booking.planet.environments.each do |env| %>
                     <i class="<%= env.icon %>"></i>
                    <% end %>
                  </div>
