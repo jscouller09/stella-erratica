@@ -1,6 +1,6 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
   <%= link_to "/", class: "navbar-brand" do %>
-    <%= image_tag("Stellatica-logo.png") %>
+    <%= image_tag("Logo Stellactica-no-bg.png") %>
     <% end %>
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -11,13 +11,19 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <% if user_signed_in? %>
-        <li class="nav-item active">
-
-          <%= link_to "Home", "#", class: "nav-link" %>
-        </li>
         <li class="nav-item">
-          <%= link_to "Messages", "#", class: "nav-link" %>
+
+          <%= link_to "Explore", planets_path, class: "nav-link" %>
         </li>
+        <li class="nav-item active">
+          <%= link_to "Dashboard", dashboard_path, class: "nav-link" %>
+        </li>
+        <% if current_user.overlord? %>
+        <li class="nav-item">
+          <%= link_to "Create a planet", dashboard_path, class: "nav-link" %>
+        </li>
+        <% end %>
+
         <li class="nav-item dropdown">
           <% if current_user.avatar.attached? %>
             <%= cl_image_tag current_user.avatar.key, width: 56, height: 56, crop: :thumb, gravity: :face, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
@@ -25,10 +31,9 @@
             <%= image_tag "no-profile.jpeg", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
           <% end %>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-            <span class="dropdown-item"><%= current_user.email%></span>
+            <span class="dropdown-item"><%= current_user.first_name%> <%= current_user.last_name%></span>
             <hr>
-            <%= link_to "Explore", planets_path, class: "dropdown-item" %>
-            <%= link_to "Dashboard", dashboard_path, class: "dropdown-item" %>
+            <%= link_to "Change password", edit_user_password_path, class: "dropdown-item" %>
             <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
           </div>
         </li>
