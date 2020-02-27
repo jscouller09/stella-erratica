@@ -1,9 +1,9 @@
 class PlanetsController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:index]
+  skip_before_action :authenticate_user!, only: [:index, :show]
 
   # GET /planets
   def index
-    @planets = Planet.all
+    @planets = policy_scope(Planet)
   end
 
   # GET /planets/:id
