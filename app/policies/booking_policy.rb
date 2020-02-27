@@ -25,7 +25,7 @@ class BookingPolicy < ApplicationPolicy
   def reject_booking?
     #only overlords  can approve booking
     record.user == record.planet.user
-
+  end
   def destroy?
     # travellers and overlords can only destroy their own bookings
     record.user == user || record.planet.user || user.admin?
@@ -42,4 +42,5 @@ class BookingPolicy < ApplicationPolicy
       scope.all
     end
   end
+
 end

@@ -1,6 +1,45 @@
 <div class="container mt-5">
-<h1>Tokotai<br><%= current_user.nickname %> !</h1>
+<h1>Tokotai <%= current_user.nickname %> !</h1>
   <% if current_user.traveller? %>
+  <h2>My trips</h2>
+  <% @bookings.each do |booking| %>
+  <% unless booking.completed? %>
+     <div class="trip-card">
+         <div class="trip-notif">
+           <% if current_user.avatar.attached? %>
+             <%= cl_image_tag booking.planet.user.avatar.key, class: "avatar" %>
+           <% else %>
+             <%= image_tag "no-profile.png", class: "avatar" %>
+           <% end %>
+           <p>Request sent to <%= booking.planet.user.first_name %></p>
+         </div>
+         <div class="trip-details">
+             <%= cl_image_tag booking.planet.photos.first.key %>
+           <div class="trip-info">
+             <div class="trip-header">
+               <h2><%= booking.planet.name %></h2>
+               <p>Long: <%= booking.planet.longitude %> Lat: <%= booking.planet.latitude %></p>
+             </div>
+             <div class="trip-booking-info">
+               <div class="trip-icons">
+                 <i class="fab fa-reddit-alien"></i> <span> <%= booking.planet.capacity %></span>
+                 <i class="<%= booking.planet.environment.icon %>"></i>
+               </div>
+               <div class="trip-price">
+                 <p>Total</p>
+                 <p><%= booking.cost %></p>
+               </div>
+             </div>
+             <% unless booking.approved? %>
+             <div class="trip-footer">
+               <p> <strong>Status:</strong> pending...</p>
+             </div>
+             <% end %>
+           </div>
+         </div>
+     </div>
+   <% end %>
+   <% end %>
   <h2>Keep exploring</h2>
   <div class="planet-grid">
     <% @planets.take(2).each do |planet| %>
@@ -28,48 +67,55 @@
     <% end %>
   </div>
 
-   <h2>My trips</h2>
-   <% @bookings.each do |booking| %>
-   <% unless booking.completed? %>
-      <div class="trip-card">
-          <div class="trip-notif">
-            <% if current_user.avatar.attached? %>
-              <%= cl_image_tag booking.planet.user.avatar.key, class: "avatar" %>
-            <% else %>
-              <%= image_tag "no-profile.jpeg", class: "avatar" %>
-            <% end %>
-            <p>Request sent to <%= booking.planet.user.first_name %></p>
-          </div>
-          <div class="trip-details">
-              <%= cl_image_tag booking.planet.photos.first.key %>
-            <div class="trip-info">
-              <div class="trip-header">
-                <h2><%= booking.planet.name %></h2>
-                <p>Long: <%= booking.planet.longitude %> Lat: <%= booking.planet.latitude %></p>
-              </div>
-              <div class="trip-booking-info">
-                <div class="trip-icons">
-                  <i class="fab fa-reddit-alien"></i> <span> <%= booking.planet.capacity %></span>
-                  <i class="<%= booking.planet.environment.icon %>"></i>
-                </div>
-                <div class="trip-price">
-                  <p>Total</p>
-                  <p><%= booking.cost %></p>
-                </div>
-              </div>
-              <% unless booking.approved? %>
-              <div class="trip-footer">
-                <p> <strong>Status:</strong> pending...</p>
-              </div>
-              <% end %>
-            </div>
-          </div>
-      </div>
-    <% end %>
-    <% end %>
+
   <% end %>
 
   <% if current_user.overlord? %>
+    <h2>Requests</h2>
+  <% @bookings.each do |booking| %>
+    <% unless booking.completed? %>
+       <div class="trip-card">
+          <div class="trip-notif">
+             <% if booking.user.avatar.attached? %>
+               <%= cl_image_tag booking.user.avatar.key, class: "avatar" %>
+             <% else %>
+               <%= image_tag "no-profile.png", class: "avatar" %>
+             <% end %>
+             <p><%= booking.user.first_name %> sent you a request</p>
+          </div>
+          <div class="trip-details">
+          <%= cl_image_tag booking.planet.photos.first.key %>
+          <div class="trip-info">
+
+            <div class="trip-header">
+              <h2><%= booking.planet.name %></h2>
+              <p>Long: <%= booking.planet.longitude %> Lat: <%= booking.planet.latitude %></p>
+            </div>
+            <div class="trip-booking-info">
+                 <div class="trip-icons">
+                   <i class="fab fa-reddit-alien"></i> <span> <%= booking.planet.capacity %></span>
+                   <i class="<%= booking.planet.environment.icon %>"></i>
+                 </div>
+                 <div class="trip-price">
+                   <p>Total</p>
+                   <p><%= booking.cost %></p>
+                 </div>
+             </div>
+           </div>
+        </div>
+      <% unless booking.approved? %>
+        <div class="request-status">
+         <%= link_to approve_booking_path(booking),method: :patch, class: "btn-approve" do %>
+         <i class="far fa-check-circle"></i> Accept
+         <% end %>
+         <%= link_to reject_booking_path(booking),method: :patch, class: "btn-reject" do%>
+         <i class="fas fa-times"></i> Reject
+         <% end %>
+        </div>
+      <% end %>
+     <% end %>
+    </div>
+  <% end %>
     <h2>My planets</h2>
     <div class="my-planet-grid">
       <% current_user.planets.each do |planet| %>
@@ -89,50 +135,7 @@
         </div>
       <% end %>
     </div>
-
-    <h2>Requests</h2>
-    <% @bookings.each do |booking| %>
-    <% unless booking.completed? %>
-       <div class="trip-card">
-           <div class="trip-notif">
-             <% if booking.user.avatar.attached? %>
-               <%= cl_image_tag booking.user.avatar.key, class: "avatar" %>
-             <% else %>
-               <%= image_tag "no-profile.jpeg", class: "avatar" %>
-             <% end %>
-             <p><%= booking.planet.user.first_name %> sent you a request</p>
-           </div>
-           <div class="trip-details">
-               <%= cl_image_tag booking.planet.photos.first.key %>
-             <div class="trip-info">
-               <div class="trip-header">
-                 <h2><%= booking.planet.name %></h2>
-                 <p>Long: <%= booking.planet.longitude %> Lat: <%= booking.planet.latitude %></p>
-               </div>
-               <div class="trip-booking-info">
-                 <div class="trip-icons">
-                   <i class="fab fa-reddit-alien"></i> <span> <%= booking.planet.capacity %></span>
-                   <i class="<%= booking.planet.environment.icon %>"></i>
-                 </div>
-                 <div class="trip-price">
-                   <p>Total</p>
-                   <p><%= booking.cost %></p>
-                 </div>
-               </div>
-               <% unless booking.approved? %>
-               <div class="trip-footer">
-                 <%= link_to approve_booking_path, class: "btn-approve" do %>
-
-                 <% end %>
-               </div>
-               <% end %>
-             </div>
-           </div>
-       </div>
-     <% end %>
-     <% end %>
-
-    <% end %>
+  <% end %>
 
 
 
