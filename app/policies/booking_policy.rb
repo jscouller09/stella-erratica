@@ -14,27 +14,27 @@ class BookingPolicy < ApplicationPolicy
 
   def destroy?
     # travellers and overlords can only destroy their own bookings
-    record.user == (user || record.planet.user)
+    (user == (record.user || record.planet.user)) || user.admin?
   end
 
   def approve_booking?
-    #only overlords  can approve booking
-    record.user == record.planet.user
+    #only overlords who own the planet requested can approve booking
+    (user == record.planet.user) || user.admin?
   end
 
   def reject_booking?
-    #only overlords  can approve booking
-    record.user == record.planet.user
+    #only overlords own the planet requested can approve booking
+    (user == record.planet.user) || user.admin?
   end
 
   def destroy?
     # travellers and overlords can only destroy their own bookings
-    record.user == user || record.planet.user || user.admin?
+    (user == (record.user || record.planet.user)) || user.admin?
   end
 
   def complete_booking?
-    #only traveller can complete booking
-    record.user == user
+    # only travellers can complete bookings
+    (user == record.user) || user.admin?
   end
 
   class Scope < Scope
