@@ -7,18 +7,33 @@ class BookingPolicy < ApplicationPolicy
   end
 
   # by default #edit will copy update
-  def update?
-    # travellers and overlords can only update their own bookings
-    record.user == user || record.planet.user || user.admin?
+  # def update?
+  #   # travellers and overlords can only update their own bookings
+  #   record.user == user || record.planet.user
+  # end
+
+  def destroy?
+    # travellers and overlords can only destroy their own bookings
+    record.user == (user || record.planet.user)
   end
+
+  def approve_booking?
+    #only overlords  can approve booking
+    record.user == record.planet.user
+  end
+
+  def reject_booking?
+    #only overlords  can approve booking
+    record.user == record.planet.user
 
   def destroy?
     # travellers and overlords can only destroy their own bookings
     record.user == user || record.planet.user || user.admin?
   end
 
-  def dashboard?
-    true
+  def complete_booking?
+    #only traveller can complete booking
+    record.user == user
   end
 
   class Scope < Scope
