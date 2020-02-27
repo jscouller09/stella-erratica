@@ -36,17 +36,20 @@
                 </div>
               </div>
           </div>
-           <% unless booking.approved? %>
-             <div class="request-status">
-              <%= link_to approve_booking_path(booking),method: :patch, class: "btn-approve" do %>
-              <i class="far fa-check-circle"></i> Accept
-              <% end %>
-              <%= link_to reject_booking_path(booking),method: :patch, class: "btn-reject" do%>
-              <i class="fas fa-times"></i> Reject
-              <% end %>
+          <div class="request-status">
+           <% if !booking.approved? && !booking.completed? %>
+                <%= link_to approve_booking_path(booking),method: :patch, class: "btn-approve" do %>
+                <i class="far fa-check-circle"></i> Accept
+                <% end %>
+                <%= link_to reject_booking_path(booking),method: :patch, class: "btn-reject" do%>
+                <i class="fas fa-times"></i> Reject
+                <% end %>
+            <% elsif !booking.completed? %>
+              <p><strong>Status:</strong> Upcoming trip for <%= booking.planet.name %>!</p>
+          <% end %>
           </div>
           </div>
-        <% end %>
+
        <% end %>
 
          <h2>My planets</h2>
@@ -115,11 +118,16 @@
                  </div>
                </div>
              </div>
-             <% unless booking.approved? %>
-             <div class="request-status">
-               <p> <strong>Status:</strong> pending...</p>
-             </div>
-             <% end %>
+
+               <div class="request-status">
+                <% if !booking.approved? && !booking.completed? %>
+                 <p><strong>Status:</strong> pending...</p>
+                 <% elsif !booking.approved? && booking.completed? %>
+                 <p><strong>Status:</strong> Sorry, your trip was rejected !</p>
+                 <% elsif booking.approved? && !booking.completed? %>
+                 <p><strong>Status:</strong> Your trip was accepted !</p>
+                 <% end %>
+               </div>
          </div>
        <% end %>
     <% end %>
