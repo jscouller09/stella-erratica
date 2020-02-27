@@ -16,4 +16,8 @@ class User < ApplicationRecord
   # while an overlord will have bookings but only through planets
   has_many :incoming_bookings, through: :planets, source: :bookings
   # as opposed to a traveller "owning" the planet or an overlord *making* a booking
+
+  def full_name
+    "#{first_name} #{last_name}"
+  end
 end

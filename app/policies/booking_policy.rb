@@ -3,18 +3,18 @@ class BookingPolicy < ApplicationPolicy
   # by default #new will copy create
   def create?
     # only travellers can create bookings
-    user && user.traveller?
+    user && (user.traveller? || user.admin?)
   end
 
   # by default #edit will copy update
   def update?
     # travellers and overlords can only update their own bookings
-    record.user == user || record.planet.user
+    record.user == user || record.planet.user || user.admin?
   end
 
   def destroy?
     # travellers and overlords can only destroy their own bookings
-    record.user == user || record.planet.user
+    record.user == user || record.planet.user || user.admin?
   end
 
   def dashboard?

@@ -19,13 +19,14 @@ CSV.read(filepath, csv_options).each do |row|
   # grab all columns (except for photo_* columns) and give 2 new planet instance
   user_args = row.reject { |k, v| k =~ /\Aphoto_.*\z/ } .to_h
   user = User.new(user_args)
-  unless row[:photo_url].nil?
-    avatar = URI.open(row[:photo_url])
-    user.avatar.attach(io: avatar, filename: "#{user.first_name}_#{user.last_name}.png", content_type: 'image/png')
-  end
   unless user.save
     puts "Couldn't create user #{user.email}. Maybe already in DB?"
   else
+    unless row[:photo_url].nil?
+      avatar = URI.open(row[:photo_url])
+      user.avatar.attach(io: avatar, filename: "#{user.first_name}_#{user.last_name}.png", content_type: 'image/png')
+    end
+    user.save!
     puts "Made user #{user.email}!"
   end
 end
@@ -51,17 +52,18 @@ CSV.read(filepath, csv_options).each do |row|
   # grab all columns (except for photo_* columns) and give 2 new planet instance
   planet_args = row.reject { |k, v| k =~ /\Aphoto_.*\z/ } .to_h
   planet = Planet.new(planet_args)
-  # last 3 entries in the row are photo URLs
-  photos = row.select { |k, v| k =~ /\Aphoto_.*\z/ } .to_h
-  photos.each do |col_name, photo_url|
-    photo = URI.open(photo_url)
-    planet.photos.attach(io: photo, filename: "#{planet.name}.png", content_type: 'image/png')
-  end
   # assign the planet a random overlord
   planet.user = User.where(overlord: true).sample
-  unless planet.save!
+  unless planet.save
     puts "Couldn't create planet #{planet.name}. Maybe already in DB?"
   else
+    # last 3 entries in the row are photo URLs
+    photos = row.select { |k, v| k =~ /\Aphoto_.*\z/ } .to_h
+    photos.each do |col_name, photo_url|
+      photo = URI.open(photo_url)
+      planet.photos.attach(io: photo, filename: "#{planet.name}.png", content_type: 'image/png')
+    end
+    planet.save!
     puts "Made planet #{planet.name}!"
   end
 end
