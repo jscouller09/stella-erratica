@@ -9,7 +9,7 @@ a{
 
 .planet-grid{
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
 }
 
 .card-planet {
@@ -18,7 +18,7 @@ a{
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
   height: 12rem;
   border-radius: 0.46rem;
-  max-width: 10rem;
+  min-width: 180px;
   margin: 1.2rem;
 }
 .card-planet img {
@@ -54,7 +54,7 @@ a{
 .card-planet-infos-text p {
   margin-bottom: 0;
   margin-top: 0;
-  font-size: 0.4rem;
+  font-size: .6rem;
 }
 .card-planet-infos-text h2 {
   color: $header-color;
@@ -64,14 +64,6 @@ a{
   margin-top: 0.4rem;
 }
 
-.card-planet-infos-icons {
-  display: flex;
-  font-size: 0.6rem;
-  width: 100%;
-  justify-content: space-around;
-  opacity: 0.25;
-  align-items: center;
-}
 .card-planet-infos-price {
   display: flex;
   flex-direction: column;
@@ -87,4 +79,26 @@ a{
   margin-bottom: 1.4rem;
   margin-left: 0.2rem;
   font-weight: 200;
+}
+
+
+@media(min-width: 576px) {
+  .planet-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media(min-width: 768px) {
+  .planet-grid {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+@media(min-width: 992px) {
+  .planet-grid {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}
+@media(min-width: 1200px) {
+  .planet-grid {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  }
 }
