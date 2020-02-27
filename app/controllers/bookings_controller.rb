@@ -23,19 +23,46 @@ class BookingsController < ApplicationController
     end
   end
 
-  # GET /bookings/:id/edit
-  def edit
-    @booking = Booking.find(params[:id])
-    authorize @booking
-  end
+  # # GET /bookings/:id/edit
+  # def edit
+  #   @booking = Booking.find(params[:id])
+  #   authorize @booking
+  # end
 
   # PATCH or PUT /bookings/:id
-  def update
+  # def update
+  #   @booking = Booking.find(params[:id])
+  #   authorize @booking
+  #   @booking.update(booking_params)
+  #   redirect_to dashboard_path
+  # end
+
+  def approve_booking
     @booking = Booking.find(params[:id])
     authorize @booking
-    @booking.update(booking_params)
+    @booking.approved = true
+    @booking.save
     redirect_to dashboard_path
   end
+
+  def complete_booking
+    @booking = Booking.find(params[:id])
+    authorize @booking
+    @booking.complete = true
+    @booking.save
+    redirect_to dashboard_path
+  end
+
+  def reject_booking
+    @booking = Booking.find(params[:id])
+    authorize @booking
+    @booking.approved = false
+    @booking.complete = true
+    @booking.save
+    redirect_to dashboard_path
+  end
+
+
 
   # DELETE /bookings/:id
   def destroy

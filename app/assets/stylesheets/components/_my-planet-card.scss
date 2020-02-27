@@ -1,40 +1,48 @@
+.my-planet-grid{
+  display:grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 16px;
+}
 .my-planet-card {
   overflow: hidden;
   background: white;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  margin: 24px 0;
+  border-radius: 5px;
+    img {
+    height: 200px;
+    width: 100%;
+    object-fit: cover;
+    }
+    h2 {
+      font-size: 16px;
+      font-weight: bold;
+      margin: 0;
+      color: $header-color;
+    }
+    p {
+      font-size: 12px;
+      opacity: .7;
+      margin: 0;
+    }
+    .my-planet-infos {
+      padding: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      position: relative;
+    }
 }
-
-.my-planet-card > img {
-  height: 200px;
-  width: 100%;
-  object-fit: cover;
-}
-
-.my-planet-card h2 {
-  font-size: 16px;
-  font-weight: bold;
-  margin: 0;
-}
-
-.my-planet-card p {
-  font-size: 12px;
-  opacity: .7;
-  margin: 0;
-}
-
-
-.my-planet-card .my-planet-infos {
-  padding: 16px;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  position: relative;
-}
-
-.my-planet-infos .my-planet-user {
-  position: absolute;
-  right: 16px;
-  top: -20px;
-  width: 40px;
+.my-planet-infos {
+  .my-planet-user {
+    position: absolute;
+    right: 16px;
+    top: -20px;
+    width: 40px;
+  }
+  .my-planet-icons{
+    display: flex;
+    justify-content: space-between;
+  }
 }
 

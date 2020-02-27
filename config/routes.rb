@@ -11,5 +11,8 @@ Rails.application.routes.draw do
   end
 
   # edit/delete bookings
-  resources :bookings, only: %i[edit update destroy]
+  resources :bookings, only: %i[destroy]
+  post '/bookings/:id/approve', to: 'bookings#approve_booking', as: approve_booking
+  post '/bookings/:id/complete', to: 'bookings#complete_booking', as: complete_booking
+  post '/bookings/:id/reject', to: 'bookings#reject_booking', as: reject_booking
 end
