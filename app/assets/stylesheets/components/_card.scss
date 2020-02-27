@@ -84,20 +84,24 @@ a{
 @media(min-width: 576px) {
   .planet-grid {
     grid-template-columns: 1fr 1fr;
+    grid-gap: 4px;
   }
 }
 @media(min-width: 768px) {
   .planet-grid {
     grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 8px;
   }
 }
 @media(min-width: 992px) {
   .planet-grid {
     grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 16px;
   }
 }
 @media(min-width: 1200px) {
   .planet-grid {
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-gap: 8px;
   }
 }
