@@ -3,7 +3,11 @@ class PlanetsController < ApplicationController
 
   # GET /planets
   def index
-    @planets = policy_scope(Planet)
+    if params[:query]
+      @planets = policy_scope(Planet).global_search(params[:query])
+    else
+      @planets = policy_scope(Planet)
+    end
   end
 
   # GET /planets/:id
