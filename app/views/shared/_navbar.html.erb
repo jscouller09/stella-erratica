@@ -20,7 +20,7 @@
         </li>
         <% if current_user.overlord? %>
         <li class="nav-item">
-          <%= link_to "Create a planet", dashboard_path, class: "nav-link" %>
+          <%= link_to "Create a planet", new_planet_path, class: "nav-link" %>
         </li>
         <% end %>
 

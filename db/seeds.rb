@@ -67,3 +67,18 @@ CSV.read(filepath, csv_options).each do |row|
     puts "Made planet #{planet.name}!"
   end
 end
+
+
+# make new environment/planet associations with each row in the CSV file
+# file location
+filepath = 'db/environments_planets.csv'
+CSV.read(filepath, csv_options).each do |row|
+  # grab all columns (except for photo_* columns) and give 2 new planet instance
+  args = row.to_h
+  env_planet = EnvironmentsPlanet.new(args)
+  unless env_planet.save
+    puts "Couldn't create environment/planet link for planet #{env_planet.planet_id}!"
+  else
+    puts "Made environment/planet link for planet #{env_planet.planet_id}!"
+  end
+end

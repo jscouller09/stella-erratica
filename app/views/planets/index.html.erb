@@ -8,7 +8,6 @@
     class: "form-control",
     placeholder: "Exploration Keyword"
   %>
-  <!-- TODO change this button to something better -->
 <% end %>
 
 <div class="planet-grid">
@@ -21,18 +20,21 @@
       <div class="card-planet-infos-text">
         <h2> <%= planet.name %></h2>
         <p><%= planet.longitude %> <%= planet.latitude %></p>
-        <div class="card-planet-infos-icons">
-          <i class="fab fa-reddit-alien"></i><span><%= planet.capacity %></span>
-          <i class="<%= planet.environment.icon %>"></i>
-        </div>
-        </div>
+        <p class="card-planet-infos-icons">
+          <i class="fab fa-reddit-alien"></i>
+          <span><%= planet.capacity %></span>&nbsp;&nbsp;
+          <% planet.environments.each do |env| %>
+            <i class="<%= env.icon %>"></i>&nbsp;&nbsp;
+          <% end %>
+        </p>
+      </div>
 
-        <div class="card-planet-infos-price">
-          <p>Rate:</p>
-          <div class="card-planet-pricing">
-            <p><%= planet.rate %></p>
-          </div>
+      <div class="card-planet-infos-price">
+        <p>Rate:</p>
+        <div class="card-planet-pricing">
+          <p><%= planet.rate %></p>
         </div>
+      </div>
 
     </div>
 
