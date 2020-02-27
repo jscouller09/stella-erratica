@@ -9,7 +9,8 @@ a{
 
 .planet-grid{
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap:16px;
 }
 
 .card-planet {
@@ -87,4 +88,11 @@ a{
   margin-bottom: 1.4rem;
   margin-left: 0.2rem;
   font-weight: 200;
+}
+
+@media(max-width: 768px) {
+  .planet-grid {
+    grid-template-columns: 1fr 1fr;
+    grid-gap:8px;
+  }
 }

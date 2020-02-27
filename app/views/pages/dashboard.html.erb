@@ -116,11 +116,13 @@
      <% end %>
     </div>
   <% end %>
+
     <h2>My planets</h2>
     <div class="my-planet-grid">
       <% current_user.planets.each do |planet| %>
         <div class="my-planet-card">
           <%= cl_image_tag planet.photos.first.key, height: 300, width: 400, crop: :fill %>
+          <%= link_to "Terraform planet", edit_planet_path(planet) %>
           <div class="my-planet-infos">
             <div>
               <h2><%= planet.name %></h2>
@@ -135,6 +137,7 @@
         </div>
       <% end %>
     </div>
+
   <% end %>
 
 
