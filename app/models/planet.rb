@@ -8,7 +8,8 @@ class Planet < ApplicationRecord
   # updated to many environments through join table
   has_many :environments_planets
   has_many :environments, through: :environments_planets
-  has_many :bookings
+  has_many :bookings, dependent: :destroy
+  has_many :reviews, through: :bookings
   has_many_attached :photos
   # pg_search *should* allow for searching by environment and/or description
   pg_search_scope :global_search,

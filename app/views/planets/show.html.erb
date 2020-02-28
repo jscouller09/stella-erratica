@@ -1,12 +1,12 @@
 
-<div class="container mt-5">
+<div class="container mt-1">
 
-  <div id="carouselExampleControls" class="carousel slide mt-5" data-ride="carousel">
-    <div class="carousel-inner">
+  <div id="carouselExampleControls" class="carousel slide " data-ride="carousel">
+    <div class="carousel-inner text-center">
 
       <% @planet.photos.each_with_index do |photo, index| %>
         <% if index == 0 %>
-          <div class="carousel-item active">
+          <div class="carousel-item active img-fluid" style="width: 100%;">
             <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
           </div>
         <% else %>
@@ -26,7 +26,7 @@
     </a>
   </div>
     <!-- TODO style this button -->
-    <%= link_to "< back", planets_path, class: "showa" %>
+    <%= link_to "< back", planets_path, class: "ghost" %>
 
 
 
@@ -39,7 +39,7 @@
         <i class="fab fa-reddit-alien"></i><span><%= @planet.capacity %></span>
       </div>
     </div>
-      <p><%= @planet.rate %> $ / week</p>
+      <p><%= @planet.rate %> <i class="fab fa-gitkraken"></i> / space day</p>
   </div>
 
   <div class="show-info-text">
@@ -70,10 +70,9 @@
 <% if current_user && policy(Booking).create? %>
   <div class="foot fixed-bottom">
     <%= link_to "Book!", new_planet_booking_path(@planet), class: "btn-rounded" %>
-  </div>
-<% end %>
+  <% end %>
 
-<div class="foot fixed-bottom">
+
   <% if current_user && policy(@planet).update? %>
     <%= link_to "Edit", edit_planet_path, class: "btn-rounded" %>
   <% end %>
