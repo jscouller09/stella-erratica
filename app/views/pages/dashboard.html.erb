@@ -61,7 +61,7 @@
               <%= link_to edit_planet_path(planet), class: "edit-icon", title: "Terraform" do %>
                 <i class="fas fa-drafting-compass"></i>
               <% end %>
-              <%= link_to planet_path(planet), method: :delete, class: "destroy-icon", title: "Annihilate" do %>
+              <%= link_to planet_path(planet), method: :delete, class: "destroy-icon", title: "Annihilate", data: {confirm: "You're about to Annihilate this planet... Are you sure?"} do %>
                 <i class="fas fa-bomb"></i>
               <% end %>
               <%= cl_image_tag planet.photos.first.key, height: 300, width: 400, crop: :fill %>
@@ -91,7 +91,7 @@
     <% @bookings.each do |booking| %>
       <% unless booking.approved? %>
          <div class="trip-card">
-          <%= link_to booking_path(booking), method: :delete, class: "destroy-icon", title: 'Abort' do %>
+          <%= link_to booking_path(booking), method: :delete, class: "destroy-icon", title: 'Abort',data: {confirm: "Are you sure you want to abort this invasion?"}  do %>
             <i class="fas fa-times"></i>
           <% end %>
             <div class="trip-notif">
