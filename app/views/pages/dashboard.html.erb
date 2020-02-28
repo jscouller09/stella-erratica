@@ -2,6 +2,9 @@
 <h1>Tokotai <%= current_user.nickname %> !</h1>
   <% if current_user.traveller? %>
   <h2>My trips</h2>
+
+
+  <%= render 'reviews/form', method: "POST" %>
   <% @bookings.each do |booking| %>
   <% unless booking.completed? %>
      <div class="trip-card">
@@ -42,6 +45,8 @@
      </div>
    <% end %>
    <% end %>
+
+
   <h2>Keep exploring</h2>
   <div class="planet-grid">
     <% @planets.take(2).each do |planet| %>
