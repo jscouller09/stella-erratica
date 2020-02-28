@@ -1,3 +1,9 @@
+.requests{
+  margin: 24px;
+  text-align: center;
+  color: $header-color;
+}
+
 .container{
   overflow:scroll;
   height: 100%;
@@ -9,6 +15,16 @@
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   background-color: white;
   border-radius: 4px;
+  position: relative;
+  .destroy-icon{
+    position: absolute;
+    color: $pastel-red;
+    padding:8px;
+    right: 8px;
+    top: 8px;
+    z-index: 300;
+    font-size: 24px;
+  }
 }
 
 .trip-notif {
@@ -80,11 +96,10 @@
 .request-status{
   display: flex;
   justify-content: space-evenly;
+  p{
+    margin: 8px 0;
+  }
 }
-
-
-
-
 
 
 
