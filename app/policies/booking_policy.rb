@@ -19,12 +19,14 @@ class BookingPolicy < ApplicationPolicy
 
   def approve_booking?
     #only overlords  can approve booking
-    record.user == record.planet.user
+    # needs to be user instead of record.user otherwise it will look for the user associated with the booking and expect it to be the same as the user associated with the planet #
+    user == record.planet.user
   end
 
   def reject_booking?
+    # needs to be user instead of record.user otherwise it will look for the user associated with the booking and expect it to be the same as the user associated with the planet #
     #only overlords  can approve booking
-    record.user == record.planet.user
+    user == record.planet.user
   end
 
   def destroy?

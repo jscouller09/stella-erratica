@@ -2,6 +2,9 @@
 <h1>Tokotai <%= current_user.nickname %> !</h1>
   <% if current_user.traveller? %>
   <h2>My trips</h2>
+
+
+  <%= render 'reviews/form', method: "POST" %>
   <% @bookings.each do |booking| %>
   <% unless booking.completed? %>
      <div class="trip-card">
@@ -40,6 +43,8 @@
      </div>
    <% end %>
    <% end %>
+
+
   <h2>Keep exploring</h2>
   <div class="planet-grid">
     <% @planets.take(2).each do |planet| %>
@@ -86,7 +91,7 @@
              <p><%= booking.user.first_name %> sent you a request</p>
           </div>
           <div class="trip-details">
-            
+
               <%= cl_image_tag booking.planet.photos.first.key %>
             <div class="trip-info">
               <div class="trip-header">
@@ -96,7 +101,7 @@
               <div class="trip-booking-info">
                 <div class="trip-icons">
                   <i class="fab fa-reddit-alien"></i> <span> <%= booking.planet.capacity %></span>
-                  <% planet.environments.each do |env| %>
+                  <% booking.planet.environments.each do |env| %>
                     <i class="<%= env.icon %>"></i>
                   <% end %>
                 </div>
@@ -114,7 +119,7 @@
             <div class="trip-booking-info">
                  <div class="trip-icons">
                    <i class="fab fa-reddit-alien"></i> <span> <%= booking.planet.capacity %></span>
-                   <% planet.environments.each do |env| %>
+                   <% booking.planet.environments.each do |env| %>
                     <i class="<%= env.icon %>"></i>
                    <% end %>
                  </div>
@@ -127,10 +132,10 @@
         </div>
       <% unless booking.approved? %>
         <div class="request-status">
-         <%= link_to approve_booking_path(booking),method: :patch, class: "btn-approve" do %>
+         <%= link_to approve_booking_path(booking, approved?: true), method: :patch, class: "btn-approve" do %>
          <i class="far fa-check-circle"></i> Accept
          <% end %>
-         <%= link_to reject_booking_path(booking),method: :patch, class: "btn-reject" do%>
+         <%= link_to reject_booking_path(booking), method: :patch, class: "btn-reject" do%>
          <i class="fas fa-times"></i> Reject
          <% end %>
         </div>
