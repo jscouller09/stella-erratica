@@ -4,12 +4,12 @@
   <h2>My trips</h2>
 
 
-  <%= render 'reviews/form', method: "POST" %>
   <% @bookings.each do |booking| %>
+  <%= render 'reviews/form', booking: booking, review: Review.new %>
   <% unless booking.completed? %>
      <div class="trip-card">
          <div class="trip-notif">
-           <% if current_user.avatar.attached? %>
+           <% if booking.planet.user.avatar.attached? %>
              <%= cl_image_tag booking.planet.user.avatar.key, class: "avatar" %>
            <% else %>
              <%= image_tag "no-profile.png", class: "avatar" %>

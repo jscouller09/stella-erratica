@@ -1,4 +1,4 @@
-<%= simple_form_for( [booking, review] ) do |form| %>
+<%= simple_form_for [booking, review], html: { hidden: true}, method: "post" do |form| %>
   <%= form.input :rating, as: :integer %>
   <%= form.input :content, as: :text %>
   <%= form.button :submit %>
