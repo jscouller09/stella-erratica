@@ -191,7 +191,7 @@
 <!-- end of upcoming invasion part -->
 <h3>My Requests</h3>
 <div class="requests">
-<% if @new_bookings.empty? || @bookings = @rejected_bookings %>
+<% if @new_bookings.empty? || @bookings == @rejected_bookings %>
     <p> No pending request</p>
 <% end %>
 </div>
