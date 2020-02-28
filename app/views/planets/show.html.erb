@@ -25,8 +25,8 @@
       <span class="sr-only">Next</span>
     </a>
   </div>
-
-    <%= link_to "< back", dashboard_path, class: "showa" %>
+    <!-- TODO style this button -->
+    <%= link_to "< back", planets_path, class: "showa" %>
 
 
 
@@ -50,7 +50,13 @@
   <h2>Environments</h2>
   <br>
   <div class="env-infos">
-    <i class="<%=@planet.environment.icon%>"></i><span><%= @planet.environment.description %></span>
+    <% @planet.environments.each do |env| %>
+      <span>
+        <i class="<%= env.icon %>"></i>&nbsp;
+        <%= env.description %>
+      </span>
+      <br>
+    <% end %>
   </div>
 
   <div class="localisation">
@@ -59,23 +65,22 @@
     <img src="https://cimtchau.ca/app/uploads/ciel.jpg" alt="Solar system">
   </div>
 </div>
-      <% if policy(Booking).create? %>
-        <div class="foot fixed-bottom">
-        <%= link_to "Book!", new_planet_booking_path(@planet), class: "btn-rounded" %>
-        </div>
-      <% end %>
 
-    </div>
 
-  <% if policy(@planet).update? %>
-      <div class="foot fixed-bottom">
-          <%= link_to "Edit", edit_planet_path, class: "btn-rounded" %>
+<% if current_user && policy(Booking).create? %>
+  <div class="foot fixed-bottom">
+    <%= link_to "Book!", new_planet_booking_path(@planet), class: "btn-rounded" %>
+  </div>
+<% end %>
 
-        <% end %>
+<div class="foot fixed-bottom">
+  <% if current_user && policy(@planet).update? %>
+    <%= link_to "Edit", edit_planet_path, class: "btn-rounded" %>
+  <% end %>
 
-        <% if policy(@planet).destroy? %>
-          <%= link_to "Delete", planet_path,
-              method: "DELETE",
-              data: { confirm: "Are You Sure You Want to Destroy #{@planet.name}?"}, class: "btn-rounded" %>
-        <% end %>
-      </div>
+  <% if current_user && policy(@planet).destroy? %>
+    <%= link_to "Delete", planet_path,
+        method: "DELETE",
+        data: { confirm: "Are You Sure You Want to Destroy #{@planet.name}?"}, class: "btn-rounded" %>
+  <% end %>
+</div>

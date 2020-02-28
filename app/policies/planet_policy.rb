@@ -13,34 +13,23 @@ class PlanetPolicy < ApplicationPolicy
   # by default #new will copy create
   def create?
     # only overlords can create planets
-    user.overlord?
+    user && (user.overlord? || user.admin?)
   end
 
   # by default #edit will copy update
   def update?
     # overlords can only update their own planets
-    record.user == user
+    user && ((record.user == user) || user.admin?)
   end
 
   def destroy?
     # overlords can only destroy their own planets
-    record.user == user
-  end
-
-  def dashboard?
-    true
+    user && ((record.user == user) || user.admin?)
   end
 
   class Scope < Scope
     def resolve
-      # this scope is only called in the dashboard for now
-      # set so overlord can only see their own planets
-      # but travellers can see all the planets
-      if user.overlord?
-        scope.where(user: user)
-      else
-        scope.all
-      end
+      scope.all
     end
   end
 end

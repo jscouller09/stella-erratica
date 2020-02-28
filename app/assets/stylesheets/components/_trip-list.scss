@@ -3,14 +3,20 @@
   height: 100%;
 }
 .trip-card{
-  margin-top: 24px;
+  margin: 24px 0;
+  border-top: 1px solid $light-gray;
+  border-bottom: 1px solid $light-gray;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  background-color: white;
+  border-radius: 4px;
 }
+
 .trip-notif {
   display: flex;
   align-items: center;
   padding: 8px 0px;
   margin-left:8px;
-  width: 100%
+  width: 100%;
   p {
     margin: 0;
     line-height: 1.4;
@@ -23,17 +29,14 @@
 .trip-details {
   overflow: hidden;
   height: 120px;
-  background: white;
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  background: $white;
   display: flex;
   align-items: center;
-  border-radius: 4px;
   width: 100%;
      img {
       height: 100%;
       width: 120px;
       object-fit: cover;
-      border-radius: 4px 0 0 4px;
     }
     h2 {
       font-size: 16px;
@@ -72,6 +75,11 @@
   p{
     text-align: center;
   }
+}
+
+.request-status{
+  display: flex;
+  justify-content: space-evenly;
 }
 
 

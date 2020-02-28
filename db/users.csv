@@ -1,7 +1,8 @@
-email,first_name,last_name,nickname,traveller,overlord,password,photo_url
-zhaan@farscape.com,Zhaan,Zotoh,Zoey,1,0,123456,https://i.pinimg.com/originals/0f/fc/e6/0ffce62ae64c6b5451b630932ac8d408.jpg
-doom@doom.doom,Invader,Zim,Zim,0,1,123456,https://vignette.wikia.nocookie.net/villains/images/6/6e/Invader_Zim.png/revision/latest/scale-to-width-down/310?cb=20131204084622
-jabba@starwars.com,Jabba,the Hutt,JB,0,1,123456,https://upload.wikimedia.org/wikipedia/en/5/53/Jabba_the_Hutt_in_Return_of_the_Jedi_%281983%29.png
-voldemort@harry-potter.com,Lord,Voldemort,He who should not be named,0,1,123456,
-zorgan@zathura.com,Zorgon,Grog,ZG,0,1,123456,
-neil.armstrong@nasa.com,Neil,Armstrong,Neil,1,0,123456,
+email,first_name,last_name,nickname,traveller,overlord,admin,password,photo_url
+zhaan@farscape.com,Zhaan,Zotoh,Zoey,1,0,0,123456,https://i.pinimg.com/originals/0f/fc/e6/0ffce62ae64c6b5451b630932ac8d408.jpg
+doom@doom.doom,Invader,Zim,Zim,0,1,0,123456,https://vignette.wikia.nocookie.net/villains/images/6/6e/Invader_Zim.png/revision/latest/scale-to-width-down/310?cb=20131204084622
+jabba@starwars.com,Jabba,the Hutt,JB,0,1,0,123456,https://upload.wikimedia.org/wikipedia/en/5/53/Jabba_the_Hutt_in_Return_of_the_Jedi_%281983%29.png
+voldemort@harry-potter.com,Lord,Voldemort,He who should not be named,0,1,0,123456,
+zorgan@zathura.com,Zorgon,Grog,ZG,0,1,0,123456,
+neil.armstrong@nasa.com,Neil,Armstrong,Neil,1,0,0,123456,
+admin@sellactica.com,Boss,dude,Da boss,0,0,1,123456,https://i.pinimg.com/originals/45/f4/3b/45f43b05b4c26ee7d7ea70a94a8fd57f.jpg

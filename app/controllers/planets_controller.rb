@@ -1,9 +1,13 @@
 class PlanetsController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:index]
+  skip_before_action :authenticate_user!, only: [:index, :show]
 
   # GET /planets
   def index
-    @planets = Planet.all
+    if params[:query] && !params[:query].empty?
+      @planets = policy_scope(Planet).global_search(params[:query])
+    else
+      @planets = policy_scope(Planet)
+    end
   end
 
   # GET /planets/:id
@@ -59,6 +63,6 @@ class PlanetsController < ApplicationController
 private
 
   def planet_params
-    params.require(:planet).permit(:name, :description, :rate, :capacity, :environment_id, photos: [])
+    params.require(:planet).permit(:name, :description, :rate, :capacity, environment_ids: [], photos: [])
   end
 end

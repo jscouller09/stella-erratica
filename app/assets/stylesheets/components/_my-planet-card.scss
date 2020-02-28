@@ -1,0 +1,79 @@
+.header-explore{
+  display:flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.my-planet-grid{
+  display:grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 16px;
+}
+.my-planet-card {
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  margin: 24px 0;
+  border-radius: 5px;
+  position: relative;
+  z-index: 25;
+    img {
+    height: 200px;
+    width: 100%;
+    object-fit: cover;
+    position:relative;
+    }
+    h2 {
+      font-size: 16px;
+      font-weight: bold;
+      margin: 0;
+      color: $header-color;
+    }
+    p {
+      font-size: 12px;
+      opacity: .7;
+      margin: 0;
+    }
+    .my-planet-infos {
+      padding: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      top: 16px;
+      left: 8px;
+    }
+
+  .my-planet-icons{
+    display: flex;
+    justify-content: space-between;
+  }
+  .destroy-icon{
+    position: absolute;
+    color: $pastel-red;
+    padding:8px;
+    right: 8px;
+    top: 8px;
+    z-index: 300;
+    font-size: 24px;
+  }
+  .edit-icon{
+    position: absolute;
+    color: $green;
+    padding:8px;
+    left: 8px;
+    top: 8px;
+    z-index: 300;
+    font-size: 24px;
+  }
+
+}
+
+
+
+
+
+@media(max-width: 768px) {
+  .my-planet-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
