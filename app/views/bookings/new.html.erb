@@ -1,9 +1,35 @@
 
-  <div class="container">
+  <div class="container" style="text-align: center;">
     <h1><%= @planet.name %></h1>
     <h3> <%= @planet.rate %> <i class="fab fa-gitkraken"></i> / Space day</h3>
 
-    <div class="row justify-content-center stella-form">
+    <br>
+    <br>
+    <br>
+<div class="flatpickr">
+  <div class="form-wrapper" style="width: 80%; margin: 0 auto;">
+    <form>
+      <div class="form-row">
+         <%= simple_form_for :search, method: "get" do |f| %>
+       <div class="col" id="date">
+          <%= f.input :starts, as: :string, required: false, input_html: {class: "datepicker"} %>
+        </div>
+        <!-- Uncomment if you want an end date field
+
+       <!-- <div class="col">
+          <%= f.input :ends, as: :string, required: false, input_html: {class: "datepicker"} %>
+       </div> -->
+        <div class="select">
+          <%= f.button :submit, "Select", :class => "ghost", :class => 'class' %>
+        </div>
+       <% end %>
+     </div>
+    </form>
+  </div>
+</div>
+
+
+    <div class="row justify-content-center">
         <div class="form-container">
           <div class="header">
             <div class="header-row">
@@ -17,6 +43,7 @@
             <p>Space Days:</p>
             <div class="actions">
               <input type="number" id="counter" class="field" data-count="1">
+              <p></p>
             </div>
           </div>
           <form>

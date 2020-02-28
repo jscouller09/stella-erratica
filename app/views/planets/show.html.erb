@@ -1,12 +1,12 @@
 
 <div class="container mt-5">
 
-  <div id="carouselExampleControls" class="carousel slide mt-5" data-ride="carousel">
-    <div class="carousel-inner">
+  <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner d-flex align-item-center">
 
       <% @planet.photos.each_with_index do |photo, index| %>
         <% if index == 0 %>
-          <div class="carousel-item active">
+          <div class="carousel-item active" style="width: 100%;">
             <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
           </div>
         <% else %>
@@ -39,7 +39,7 @@
         <i class="fab fa-reddit-alien"></i><span><%= @planet.capacity %></span>
       </div>
     </div>
-      <p><%= @planet.rate %> $ / week</p>
+      <p><%= @planet.rate %> <i class="fab fa-gitkraken"></i> / space day</p>
   </div>
 
   <div class="show-info-text">

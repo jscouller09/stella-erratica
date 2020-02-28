@@ -8,12 +8,12 @@
   box-shadow: 0 1px 1px rgba(0,0,0,0.1);
   background-color: $white;
   padding: 30px;
-  width: 100vh;
+  width: 100vw;
   margin: 0 auto;
 }
 
-.container h1, h3 {
-  text-align: center;
+.container h1 h3 {
+  align-item: justify-content;
 }
 
 .header {
@@ -22,7 +22,7 @@
 
 .header-form {
   display: flex;
-  width: 30vh;
+  width: 100%;
   justify-content: space-between;
 }
 
