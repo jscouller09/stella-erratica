@@ -16,11 +16,11 @@ class BookingsController < ApplicationController
     @booking.user = current_user
     @booking.planet = @planet
     authorize @booking
-    @booking.duration = @booking.end - @booking.start
+    @booking.duration = (@booking.end - @booking.start) + 1
     @booking.cost = @planet.rate * @booking.duration + 1000
     if @booking.save
       flash[:notice] = "Your Request Has Been Sent to the Overlord. Awaiting approval."
-      redirect_to planet_path(@planet)
+      redirect_to dashboard_path
     else
       render "new"
     end

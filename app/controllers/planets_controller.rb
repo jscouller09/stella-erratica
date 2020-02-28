@@ -57,7 +57,7 @@ class PlanetsController < ApplicationController
     @planet = Planet.find(params[:id])
     authorize @planet
     @planet.destroy
-    redirect_to planets_path
+    redirect_to dashboard_path
   end
 
 private
