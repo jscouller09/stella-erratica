@@ -22,5 +22,9 @@ class PagesController < ApplicationController
       # as a traveller, you can see only bookings you've made
       @bookings = policy_scope(Booking).where(user: current_user)
     end
+
+    @new_bookings = @bookings.select { |b| !b.completed? && !b.approved? } || []
+    @rejected_bookings = @bookings.select { |b| b.completed? && !b.approved? } || []
+    @accepted_bookings = @bookings.select { |b| !b.completed? && b.approved? } || []
   end
 end
