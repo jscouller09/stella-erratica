@@ -5,6 +5,14 @@
   background-color: $header-color;
 }
 
+.navbar-light .navbar-toggler {
+  border-color: $btn-color;
+}
+.navbar-light .menu-icon {
+  text-align: center;
+  color: $btn-color;
+}
+
 .navbar-lewagon .navbar-collapse {
   flex-grow: 0;
 }
