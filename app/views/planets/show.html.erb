@@ -67,18 +67,17 @@
 </div>
 
 
+<div class="foot fixed-bottom">
 <% if current_user && policy(Booking).create? %>
-  <div class="foot fixed-bottom">
-    <%= link_to "Book!", new_planet_booking_path(@planet), class: "btn-rounded" %>
+    <%= link_to "Invade!", new_planet_booking_path(@planet), class: "btn-rounded" %>
   <% end %>
 
-
   <% if current_user && policy(@planet).update? %>
-    <%= link_to "Edit", edit_planet_path, class: "btn-rounded" %>
+    <%= link_to "Terraform", edit_planet_path, class: "btn-rounded" %>
   <% end %>
 
   <% if current_user && policy(@planet).destroy? %>
-    <%= link_to "Delete", planet_path,
+    <%= link_to "Annihilate", planet_path,
         method: "DELETE",
         data: { confirm: "Are You Sure You Want to Destroy #{@planet.name}?"}, class: "btn-rounded" %>
   <% end %>

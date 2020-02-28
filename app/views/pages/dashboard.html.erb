@@ -54,7 +54,7 @@
   <!-- code for upcoming invasion -->
     <h2> Upcoming invasions</h2>
     <div class="requests">
-      <% if @new_bookings == [] %>
+      <% if @accepted_bookings.empty? %>
         <p> No upcoming invasions...</p>
       <% end %>
     </div>
