@@ -105,18 +105,6 @@
           </div>
       <% end %>
     <% end %>
-
-
-
-
-
-
-
-
-
-
-
-
   <!-- overlord-my-planet code -->
     <h2>My planets</h2>
       <div class="my-planet-grid">
@@ -151,61 +139,6 @@
 
 <!-- code for traveller -->
 <% if current_user.traveller? %>
-  <h2>My Requests</h2>
-  <div class="requests">
-  <% if @new_bookings.empty? || @bookings == @rejected_bookings %>
-      <p> You don't have any upcoming invasion.
-        Explore the universe and plan your next invasion now!</p>
-        <%= link_to 'Explore', planets_path, class: "btn-rounded" %>
-  <% end %>
-  </div>
-
-  <% @bookings.each do |booking| %>
-    <% unless booking.approved? %>
-         <div class="trip-card">
-          <%= link_to booking_path(booking), method: :delete, class: "destroy-icon", title: 'Abort',data: {confirm: "Are you sure you want to abort this invasion?"}  do %>
-            <i class="fas fa-times"></i>
-          <% end %>
-            <div class="trip-notif">
-               <% if current_user.avatar.attached? %>
-                 <%= cl_image_tag booking.planet.user.avatar.key, class: "avatar" %>
-               <% else %>
-                 <%= image_tag "no-profile.png", class: "avatar" %>
-               <% end %>
-               <p>Request sent to <%= booking.planet.user.first_name %></p>
-            </div>
-             <div class="trip-details">
-                 <%= cl_image_tag booking.planet.photos.first.key %>
-               <div class="trip-info">
-                 <div class="trip-header">
-                   <h2><%= booking.planet.name %></h2>
-                   <p>Long: <%= booking.planet.longitude %> Lat: <%= booking.planet.latitude %></p>
-                 </div>
-                 <div class="trip-booking-info">
-                     <div class="trip-icons">
-                       <i class="fab fa-reddit-alien"></i> <span> <%= booking.planet.capacity %></span>
-                       <% booking.planet.environments.each do |env| %>
-                         <i class="<%= env.icon %>"></i>
-                       <% end %>
-                     </div>
-                     <div class="trip-price">
-                       <p>Total</p>
-                       <p><%= booking.cost %> <i class="fab fa-gitkraken"></i></p>
-                     </div>
-                 </div>
-               </div>
-             </div>
-
-               <div class="request-status">
-                <% if !booking.approved? && !booking.completed? %>
-                 <p><strong>Status:</strong> pending...</p>
-                 <% elsif !booking.approved? && booking.completed? %>
-                 <p><strong>Status:</strong> Sorry, you can't invade is planet !</p>
-                 <% end %>
-               </div>
-         </div>
-      <% end %>
-
 <!-- code for upcoming invasion part -->
     <h2> Upcoming invasion</h2>
     <div class="requests">
@@ -256,8 +189,60 @@
     <% end %>
   <% end %>
 <!-- end of upcoming invasion part -->
+<h3>My Requests</h3>
+<div class="requests">
+<% if @new_bookings.empty? || @bookings = @rejected_bookings %>
+    <p> No pending request</p>
+<% end %>
+</div>
+
+<% @bookings.each do |booking| %>
+  <% unless booking.approved? %>
+       <div class="trip-card">
+        <%= link_to booking_path(booking), method: :delete, class: "destroy-icon", title: 'Abort',data: {confirm: "Are you sure you want to abort this invasion?"}  do %>
+          <i class="fas fa-times"></i>
+        <% end %>
+          <div class="trip-notif">
+             <% if current_user.avatar.attached? %>
+               <%= cl_image_tag booking.planet.user.avatar.key, class: "avatar" %>
+             <% else %>
+               <%= image_tag "no-profile.png", class: "avatar" %>
+             <% end %>
+             <p>Request sent to <%= booking.planet.user.first_name %></p>
+          </div>
+           <div class="trip-details">
+               <%= cl_image_tag booking.planet.photos.first.key %>
+             <div class="trip-info">
+               <div class="trip-header">
+                 <h2><%= booking.planet.name %></h2>
+                 <p>Long: <%= booking.planet.longitude %> Lat: <%= booking.planet.latitude %></p>
+               </div>
+               <div class="trip-booking-info">
+                   <div class="trip-icons">
+                     <i class="fab fa-reddit-alien"></i> <span> <%= booking.planet.capacity %></span>
+                     <% booking.planet.environments.each do |env| %>
+                       <i class="<%= env.icon %>"></i>
+                     <% end %>
+                   </div>
+                   <div class="trip-price">
+                     <p>Total</p>
+                     <p><%= booking.cost %> <i class="fab fa-gitkraken"></i></p>
+                   </div>
+               </div>
+             </div>
+           </div>
+
+             <div class="request-status">
+              <% if !booking.approved? && !booking.completed? %>
+               <p><strong>Status:</strong> pending...</p>
+               <% elsif !booking.approved? && booking.completed? %>
+               <p><strong>Status:</strong> Sorry, you can't invade is planet !</p>
+               <% end %>
+             </div>
+       </div>
+    <% end %>
        <!-- explore the universe -->
-       <div class="header-explore"><h2>Keep exploring</h2>
+       <div class="header-explore"><h3>Keep exploring</h3>
         <%= link_to 'more', planets_path, class: "ghost" %>
        </div>
 
