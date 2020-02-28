@@ -49,39 +49,41 @@
           <% end %>
           </div>
           </div>
+      <% end %>
+    <% end %>
+    <!-- end - booking code - overlord -->
 
-       <% end %>
-
-         <h2>My planets</h2>
-         <!-- overlord planets -->
-         <div class="my-planet-grid">
-           <% current_user.planets.each do |planet| %>
-             <div class="my-planet-card">
-               <%= link_to edit_planet_path(planet), class: "edit-icon", title: "Terraform" do %>
-               <i class="fas fa-drafting-compass"></i>
-               <% end %>
-               <%= link_to planet_path(planet), method: :delete, class: "destroy-icon", title: "Annihilate" do %>
-               <i class="fas fa-bomb"></i>
-               <% end %>
-               <%= cl_image_tag planet.photos.first.key, height: 300, width: 400, crop: :fill %>
-               <div class="my-planet-infos">
-                 <div>
-                   <h2><%= planet.name %></h2>
-                   <p><%= planet.longitude %> <%= planet.latitude %></p>
-                   <div class="my-planet-icons">
-                     <p><i class="fab fa-reddit-alien"></i><%= planet.capacity %></p>
-                     <% planet.environments.each do |env| %>
-                       <p><i class="<%= env.icon %>"></i></p>
-                     <% end %>
-                   </div>
-                 </div>
-                 <span><p>Rate:</p><h2 class="my-planet-pricing"> <%= planet.rate %> <i class="fab fa-gitkraken"></i></h2></span>
-               </div>
-             </div>
-           <% end %>
-           <% end %>
-         </div>
-       <% end %>
+    <!-- overlord-my-planet code -->
+    <h2>My planets</h2>
+      <div class="my-planet-grid">
+        <% current_user.planets.each do |planet| %>
+          <div class="my-planet-card">
+              <%= link_to edit_planet_path(planet), class: "edit-icon", title: "Terraform" do %>
+                <i class="fas fa-drafting-compass"></i>
+              <% end %>
+              <%= link_to planet_path(planet), method: :delete, class: "destroy-icon", title: "Annihilate" do %>
+                <i class="fas fa-bomb"></i>
+              <% end %>
+              <%= cl_image_tag planet.photos.first.key, height: 300, width: 400, crop: :fill %>
+              <div class="my-planet-infos">
+                <div class="card-planet-infos-text">
+                  <h2><%= planet.name %></h2>
+                  <p><%= planet.longitude %> <%= planet.latitude %></p>
+                    <div class="my-planet-icons">
+                      <p><i class="fab fa-reddit-alien"></i><%= planet.capacity %></p>
+                      <% planet.environments.each do |env| %>
+                        <p><i class="<%= env.icon %>"></i></p>
+                      <% end %>
+                    </div>
+                </div>
+                <span><p>Rate:</p><h2 class="my-planet-pricing"> <%= planet.rate %> <i class="fab fa-gitkraken"></i></h2></span>
+              </div>
+          </div>
+        <% end %>
+      </div>
+    <!-- overlord-my-planet code -->
+  <% end %>
+  <!-- end of overlord dashboard -->
 
 <!-- code for traveller -->
   <% if current_user.traveller? %>
@@ -109,7 +111,7 @@
                        <i class="fab fa-reddit-alien"></i> <span> <%= booking.planet.capacity %></span>
                        <% booking.planet.environments.each do |env| %>
                          <i class="<%= env.icon %>"></i>
-                       <% end %> iteration envire
+                       <% end %>
                      </div>
                      <div class="trip-price">
                        <p>Total</p>
