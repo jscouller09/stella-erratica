@@ -73,12 +73,42 @@ end
 # file location
 filepath = 'db/environments_planets.csv'
 CSV.read(filepath, csv_options).each do |row|
-  # grab all columns (except for photo_* columns) and give 2 new planet instance
+  # grab all columns
   args = row.to_h
   env_planet = EnvironmentsPlanet.new(args)
   unless env_planet.save
     puts "Couldn't create environment/planet link for planet #{env_planet.planet_id}!"
   else
     puts "Made environment/planet link for planet #{env_planet.planet_id}!"
+  end
+end
+
+
+# make new bookings
+# file location
+filepath = 'db/bookings.csv'
+CSV.read(filepath, csv_options).each do |row|
+  # grab all columns
+  args = row.to_h
+  booking = Booking.new(args)
+  unless booking.save
+    puts "Couldn't create booking!"
+  else
+    puts "Made booking!"
+  end
+end
+
+
+# make new reviews
+# file location
+filepath = 'db/ratings.csv'
+CSV.read(filepath, csv_options).each do |row|
+  # grab all columns
+  args = row.to_h
+  review = Review.new(args)
+  unless review.save
+    puts "Couldn't create review!"
+  else
+    puts "Made review!"
   end
 end
