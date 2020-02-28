@@ -3,6 +3,7 @@ class ReviewsController < ApplicationController
     @booking = Booking.find(params[:booking_id])
     @review = Review.new(review_params)
     @review.booking = @booking
+    authorize @review
     if @review.save
       redirect_to dashboard_path
     else
