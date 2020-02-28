@@ -1,64 +1,61 @@
 
-  <div class="container" style="text-align: center;">
+<div class="container" style="text-align: center;">
+  <div class="row justify-content-center">
     <h1><%= @planet.name %></h1>
-    <h3> <%= @planet.rate %> <i class="fab fa-gitkraken"></i> / Space day</h3>
-
-    <br>
-    <br>
-    <br>
-<div class="flatpickr">
-  <div class="form-wrapper" style="width: 80%; margin: 0 auto;">
-    <form>
-      <div class="form-row">
-         <%= simple_form_for :search, method: "get" do |f| %>
-       <div class="col" id="date">
-          <%= f.input :starts, as: :string, required: false, input_html: {class: "datepicker"} %>
-        </div>
-        <!-- Uncomment if you want an end date field
-
-       <!-- <div class="col">
-          <%= f.input :ends, as: :string, required: false, input_html: {class: "datepicker"} %>
-       </div> -->
-        <div class="select">
-          <%= f.button :submit, "Select", :class => "ghost", :class => 'class' %>
-        </div>
-       <% end %>
-     </div>
-    </form>
   </div>
-</div>
+  <div class="row justify-content-center">
+    <h3> <%= @planet.rate %> <i class="fab fa-gitkraken"></i> / Space day</h3>
+  </div>
 
-
-    <div class="row justify-content-center">
-        <div class="form-container">
-          <div class="header">
-            <div class="header-row">
-              <div class="header-form">
-                <div class="big-bold" id="price" data-amount-cents="<%= @planet.rate * 100 %>"><%= @planet.rate %><i class="fab fa-gitkraken"></i></div>
-                <div class="small-light"> / Space days</div>
-              </div>
-            </div>
+  <br>
+  <br>
+  <br>
+  <div class="row justify-content-center">
+  <div class="flatpickr">
+    <div class="form-wrapper" style="width: 80%;">
+        <div class="form-row">
+           <%= simple_form_for [@planet, @booking], method: "post" do |f| %>
+         <div class="col" id="date">
+            <%= f.input :start, as: :string, required: true, label: false, input_html: {class: "datepicker"} %>
           </div>
-          <div class="flex-between">
-            <p>Space Days:</p>
-            <div class="actions">
-              <input type="number" id="counter" class="field" data-count="1">
-              <p></p>
-            </div>
+          <div class="select">
+            <%= f.button :submit, "Select", :class => "ghost", :id => 'select_btn' %>
           </div>
-          <form>
-            <div class="total-resume">
-              <div class="total-row">
-                <p>Service Fee</p><span>1000  <i class="fab fa-gitkraken"></i></span>
-              </div>
-              <div class="total-row">
-                <p>Total:</p><span class="total">0  <i class="fab fa-gitkraken"></i></span>
-              </div>
-            </div>
-
-            <input type="number" value="<%= @planet.rate %>" disabled class="form-control" id="price-input" name="price-cents" style="visibility: hidden;">
-            <input type="submit" value='BOOK ME!' class="btn-rounded" id="submit">
-          </form>
-        </div>
+       </div>
     </div>
   </div>
+  </div>
+
+
+  <div class="row justify-content-center">
+      <div class="form-container">
+        <div class="header">
+          <div class="header-row">
+            <div class="header-form">
+              <div class="big-bold" id="price" data-amount-cents="<%= @planet.rate * 100 %>"><%= @planet.rate %><i class="fab fa-gitkraken"></i></div>
+              <div class="small-light"> / Space days</div>
+            </div>
+          </div>
+        </div>
+        <div class="flex-between">
+          <p>Space Days:</p>
+          <div class="actions">
+            <span id="counter" data-count="1"></span>
+            <p></p>
+          </div>
+        </div>
+          <div class="total-resume">
+            <div class="total-row">
+              <p>Service Fee</p><span>1000  <i class="fab fa-gitkraken"></i></span>
+            </div>
+            <div class="total-row">
+              <p>Total:</p><span class="total">0  <i class="fab fa-gitkraken"></i></span>
+            </div>
+          </div>
+
+          <input type="number" value="<%= @planet.rate %>" disabled class="form-control" id="price-input" name="price-cents" style="visibility: hidden;">
+          <input type="submit" value='BOOK ME!' class="btn-rounded" id="submit">
+      </div>
+  </div>
+  <% end %>
+</div>
