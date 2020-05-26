@@ -15,7 +15,7 @@ gem 'devise'
 gem 'jbuilder', '~> 2.0'
 gem 'pg_search', '~> 2.3.0'
 gem 'puma'
-gem 'rails', '5.2.4.1'
+gem 'rails', '6.0.3.1'
 gem 'redis'
 
 gem 'autoprefixer-rails'
